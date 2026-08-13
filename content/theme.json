@@ -1,0 +1,14 @@
+{
+  "colors": {
+    "primary": "#0A0A0A",
+    "secondary": "#FFD700",
+    "text": "#FFFFFF",
+    "textMuted": "#A0A0A0",
+    "background": "#000000",
+    "cardBackground": "#121212"
+  },
+  "fonts": {
+    "headings": "Trajan Pro",
+    "body": "Montserrat"
+  }
+}

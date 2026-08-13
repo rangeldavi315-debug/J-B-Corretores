@@ -1,0 +1,69 @@
+{
+  "name": "JB Consultores Imobiliários",
+  "about": "Excelência em consultoria imobiliária, conectando pessoas aos melhores negócios com confiança, transparência e profissionalismo.",
+  "address": "Goiânia, GO",
+  "email": "jbconsultoriaimoveis@gmail.com",
+  "agents": [
+    {
+      "name": "Jonathan",
+      "creci": "29.147",
+      "phone": "(62) 9 9636-7042",
+      "whatsapp": "62996367042"
+    },
+    {
+      "name": "Bárbara Rios",
+      "creci": "29.148",
+      "phone": "(62) 9 9607-1448",
+      "whatsapp": "62996071448"
+    }
+  ],
+  "values": [
+    {
+      "title": "Transparência",
+      "description": "Atuação clara e honesta em todas as etapas."
+    },
+    {
+      "title": "Ética",
+      "description": "Compromisso com a verdade e integridade profissional."
+    },
+    {
+      "title": "Excelência",
+      "description": "Entrega do mais alto padrão de atendimento e imóveis."
+    },
+    {
+      "title": "Relacionamento",
+      "description": "Foco na parceria de longo prazo com o cliente."
+    },
+    {
+      "title": "Segurança",
+      "description": "Garantia jurídica e tranquilidade em todas as transações."
+    }
+  ],
+  "diferenciais": [
+    {
+      "title": "Atendimento Personalizado",
+      "description": "Consultoria exclusiva, desenhada para entender profundamente suas necessidades e superar suas expectativas.",
+      "icon": "UserCheck"
+    },
+    {
+      "title": "Segurança Jurídica",
+      "description": "Assessoria completa em documentação e contratos, garantindo tranquilidade total em seu investimento.",
+      "icon": "Shield"
+    },
+    {
+      "title": "Transparência",
+      "description": "Negociações claras, com todas as informações expostas de maneira íntegra e objetiva.",
+      "icon": "Eye"
+    },
+    {
+      "title": "Consultoria Especializada",
+      "description": "Profundo conhecimento de mercado para identificar as melhores oportunidades de valorização.",
+      "icon": "Bookmark"
+    },
+    {
+      "title": "Acompanhamento Completo",
+      "description": "Do primeiro contato à entrega das chaves, nossa equipe está ao seu lado em cada etapa.",
+      "icon": "Activity"
+    }
+  ]
+}
