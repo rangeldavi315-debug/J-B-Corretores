@@ -69,7 +69,6 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${sora.variable} ${poppins.variable}`}>
       <head>
-        <link rel="icon" href="/favicon.ico" />
         <link rel="canonical" href={seoData.siteUrl} />
         <script
           type="application/ld+json"
