@@ -1,0 +1,119 @@
+.section {
+  padding: 6rem 0;
+  background-color: var(--color-background);
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.intro {
+  margin-top: 1.5rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.carouselContainer {
+  overflow: hidden;
+  cursor: grab;
+  padding: 1rem 0;
+}
+
+.carouselContainer:active {
+  cursor: grabbing;
+}
+
+.grid {
+  display: flex;
+  gap: 2rem;
+  /* Ensure it stretches properly for the drag constraints */
+  width: max-content;
+  min-width: 100%;
+}
+
+.card {
+  background: var(--color-card-bg);
+  padding: 3rem 2rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  position: relative;
+  width: 350px; /* Fixed width for carousel items */
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(212, 175, 55, 0.2);
+  transform: translateY(-5px);
+}
+
+.quoteIcon {
+  color: rgba(212, 175, 55, 0.1);
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+.stars {
+  display: flex;
+  gap: 0.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.starFilled {
+  color: var(--color-secondary);
+}
+
+.starEmpty {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  font-style: italic;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+.authorInfo {
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1.5rem;
+}
+
+.author {
+  font-family: var(--font-trajan);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--color-white);
+  margin-bottom: 0.3rem;
+}
+
+.role {
+  color: var(--color-secondary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@media (min-width: 1150px) {
+  /* On very large screens where they fit, maybe justify center */
+  .grid {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 300px;
+    padding: 2.5rem 1.5rem;
+  }
+}

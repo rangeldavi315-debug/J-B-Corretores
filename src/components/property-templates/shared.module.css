@@ -1,0 +1,420 @@
+.page {
+  background: #000;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.topNav {
+  padding: 1.1rem clamp(1.25rem, 5vw, 2rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #888;
+  font-size: 0.88rem;
+}
+
+.logoCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  flex-shrink: 0;
+}
+
+/* Hint "Ampliar" sobre a galeria */
+.heroExpandHint {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: #ccc;
+  z-index: 2;
+}
+
+.thumb {
+  position: relative;
+  width: 90px;
+  height: 60px;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.2s;
+}
+
+.thumbActive {
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+/* Lightbox */
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+}
+
+.lightboxNav {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  z-index: 10;
+}
+
+.lightboxImageWrap {
+  position: relative;
+  width: min(1000px, 90vw);
+  height: min(650px, 75vh);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.lightboxDots {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.lightboxDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.lightboxDotActive {
+  background: #d4af37;
+}
+
+/* Section */
+.section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: clamp(2.25rem, 5vw, 3.5rem) clamp(1.25rem, 5vw, 2rem);
+}
+
+.sectionEyebrow {
+  font-size: 0.72rem;
+  color: #d4af37;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.sectionTitle {
+  font-family: Georgia, serif;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  letter-spacing: 0.03em;
+  margin-bottom: 1.5rem;
+}
+
+/* Spec chips */
+.specChips {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.specChip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
+
+.specChipLabel {
+  font-size: 0.65rem;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.specChipValue {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Tag list (infra / diferenciais / características) */
+.tagList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+@media (max-width: 520px) {
+  .tagList {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tagItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #bbb;
+  font-size: 0.88rem;
+}
+
+.tagCheck {
+  color: #d4af37;
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #bbb;
+  white-space: pre-line;
+}
+
+/* WhatsApp CTA button */
+.ctaButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.2rem;
+  background: #d4af37;
+  border-radius: 8px;
+  color: #000;
+  font-weight: 700;
+  font-size: 0.88rem;
+  width: 100%;
+  letter-spacing: 0.03em;
+  transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ctaButton:hover {
+  opacity: 0.88;
+  transform: scale(1.025);
+}
+
+.ctaButtonInline {
+  display: inline-flex;
+  width: auto;
+  padding: 0.9rem 2rem;
+}
+
+/* Microanimação sutil no CTA principal: chama atenção sem incomodar */
+@keyframes ctaPulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+  }
+}
+
+.ctaPulse {
+  animation: ctaPulseGlow 2.2s ease-out 1s 3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctaPulse {
+    animation: none;
+  }
+  .ctaButton:hover {
+    transform: none;
+  }
+}
+
+/* Galeria premium */
+.premiumGallery {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.premiumGalleryMain {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: #0a0a0a;
+}
+
+.premiumGalleryThumbs {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+}
+
+.premiumGalleryThumbs button.thumb {
+  width: 96px;
+  height: 68px;
+  padding: 0;
+  background: none;
+}
+
+/* Final CTA band */
+.finalCta {
+  background: #060606;
+  border-top: 1px solid rgba(212, 175, 55, 0.08);
+  padding: clamp(2rem, 5vw, 3rem) 2rem;
+  text-align: center;
+}
+
+.finalCtaText {
+  color: #999;
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+}
+
+.finalCtaBack {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 6px;
+  color: #d4af37;
+  font-size: 0.88rem;
+  margin-top: 1rem;
+}
+
+/* Localização / mapa */
+.locationReference {
+  margin-top: 0.4rem;
+  font-size: 0.88rem;
+  color: #d4af37;
+}
+
+.mapEmbedWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0a0a0a;
+}
+
+.mapEmbedFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.mapFallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding: clamp(2rem, 5vw, 2.75rem) 1.5rem;
+  background: #111;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 10px;
+}
+
+.mapFallbackTitle {
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  color: #f2e4bd;
+  margin-top: 0.25rem;
+}
+
+.mapFallbackLine {
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.mapOpenLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+  color: #d4af37;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.mapOpenLink:hover {
+  opacity: 0.85;
+}
+
+/* Mobile sticky whatsapp bar */
+.mobileStickyCta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: rgba(6, 6, 6, 0.95);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .mobileStickyCta {
+    display: block;
+  }
+  /* espaço para a barra fixa não cobrir o final da página */
+  .finalCta {
+    padding-bottom: calc(clamp(2rem, 5vw, 3rem) + 64px);
+  }
+}
