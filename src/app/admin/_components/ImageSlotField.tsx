@@ -58,7 +58,7 @@ export function ImageSlotField({
       {helperNote && <p style={{ fontSize: "0.72rem", color: "#666", marginTop: "-0.2rem", marginBottom: "0.5rem" }}>{helperNote}</p>}
 
       <div style={{ display: "flex", gap: "1rem", alignItems: "flex-start", flexWrap: "wrap", padding: "1rem", background: "rgba(0,0,0,0.3)", border: "1px dashed rgba(255,255,255,0.15)", borderRadius: "8px" }}>
-        {value && <ImagePreviewThumb src={value} />}
+        {value && <ImagePreviewThumb src={value} objectPosition={positionValue} />}
 
         <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "0.75rem", minWidth: "200px" }}>
           <ImageUploadBtn passcode={passcode} onFileSelected={handleFileSelected} onUploaded={onChange} label={value ? "Trocar imagem" : "Fazer upload"} />

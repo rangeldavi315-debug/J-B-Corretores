@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { CheckCircle, Key, Loader2, Upload, XCircle } from "lucide-react";
+import { MAX_UPLOAD_SIZE_BYTES, MAX_UPLOAD_SIZE_MB } from "@/lib/uploadLimits";
 
 export type ToastType = { type: "success" | "error"; text: string } | null;
 
@@ -125,8 +126,8 @@ export function ImageUploadBtn({
   const handle = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    if (file.size > 3 * 1024 * 1024) {
-      setErr("Máx 3MB.");
+    if (file.size > MAX_UPLOAD_SIZE_BYTES) {
+      setErr(`Máx ${MAX_UPLOAD_SIZE_MB}MB.`);
       return;
     }
     onFileSelected?.(file);
@@ -164,10 +165,10 @@ export function ImageUploadBtn({
   );
 }
 
-export function ImagePreviewThumb({ src, size = "180px" }: { src: string; size?: string }) {
+export function ImagePreviewThumb({ src, size = "180px", objectPosition }: { src: string; size?: string; objectPosition?: string }) {
   return (
     <div style={{ position: "relative", width: size, height: "100px", borderRadius: "8px", overflow: "hidden", flexShrink: 0, border: "1px solid rgba(212, 175, 55,0.3)" }}>
-      <Image src={src} alt="capa" fill style={{ objectFit: "cover" }} />
+      <Image src={src} alt="capa" fill style={{ objectFit: "cover", objectPosition: objectPosition || "50% 50%" }} />
     </div>
   );
 }

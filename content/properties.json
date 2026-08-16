@@ -1,1 +1,44 @@
-[]
+[
+  {
+    "id": "1786922841083",
+    "slug": "noroeste-park",
+    "title": "NOROESTE PARK",
+    "status": "published",
+    "city": "Goianira",
+    "description": "🚨 **E se o seu próximo investimento estivesse a apenas 10 minutos de Goiânia?**\n\n🏡 **Noroeste Park — Goianira/GO**\n\nUma oportunidade para quem quer **morar, construir ou investir** em uma região que está crescendo e se valorizando.\n\n📍 Acesso rápido entre Goiânia e Goianira pela extensão da **Av. Goiás Norte**\n📐 Lotes a partir de **225 m²**\n💰 Parcelas a partir de **R$ 519,99**\n🚗 Aproximadamente **10 minutos de Goiânia**\n\nAqui você não está apenas comprando um lote. Está garantindo espaço para **construir seu projeto e seu patrimônio**.\n\n📲 **Quer conhecer as condições? Chame agora e fale ",
+    "coverImage": "/images/properties/1786922568009-gemini-generated-image-sjqzhfsjqzhfsjqz.png",
+    "images": [
+      "/images/properties/1786922648150-chatgpt-image-16-de-ago--de-2026--20-03-21.png",
+      "/images/properties/1786922631546-foto-02-1920x1080.jpg",
+      "/images/properties/1786922636186-foto-03-1920x1080.jpg"
+    ],
+    "featured": true,
+    "order": 1,
+    "whatsappAgentId": "62996367042",
+    "createdAt": "2026-08-16T23:22:36.371Z",
+    "updatedAt": "2026-08-16T23:27:21.123Z",
+    "category": "loteamento",
+    "data": {
+      "lotTypes": [],
+      "commercial": {
+        "installment": 631,
+        "priceFrom": 631
+      },
+      "infrastructure": [
+        "Àgua",
+        "Energia",
+        "Asfalto"
+      ],
+      "differentials": [
+        "Área verde",
+        "Pracinha",
+        "Playground"
+      ],
+      "minLotSize": 225
+    },
+    "coverImagePosition": "50% 0%",
+    "state": "GO",
+    "neighborhood": "Noroeste Park",
+    "googleMapsUrl": "https://www.google.com/maps/place/Residencial+Noroeste+Park/@-16.5711875,-49.3716371,18.5z/data=!4m10!1m2!2m1!1snoroeste+park+goianira!3m6!1s0x935e6180a594ec39:0x774a2a0008d8456c!8m2!3d-16.5704687!4d-49.3715589!15sChZub3JvZXN0ZSBwYXJrIGdvaWFuaXJhkgEObGFuZF9hbGxvdG1lbnTgAQA!16s%2Fg%2F11qpz5v5mq?entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D"
+  }
+]

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+import { MAX_UPLOAD_SIZE_BYTES, MAX_UPLOAD_SIZE_MB } from "@/lib/uploadLimits";
 
 const UPLOAD_DIR = path.join(process.cwd(), "public", "images", "properties");
 
@@ -22,6 +23,11 @@ export async function POST(request: Request) {
     const validMimeTypes = ["image/jpeg", "image/png", "image/webp", "image/avif"];
     if (!validMimeTypes.includes(file.type)) {
       return NextResponse.json({ error: "Invalid file type. Only JPG, PNG, WEBP and AVIF are allowed." }, { status: 400 });
+    }
+
+    // Validate size server-side too — never trust a client-only check
+    if (file.size > MAX_UPLOAD_SIZE_BYTES) {
+      return NextResponse.json({ error: `File too large. Max ${MAX_UPLOAD_SIZE_MB}MB.` }, { status: 400 });
     }
 
     const buffer = Buffer.from(await file.arrayBuffer());
