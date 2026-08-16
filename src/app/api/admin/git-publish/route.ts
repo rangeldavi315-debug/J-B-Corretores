@@ -27,12 +27,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Not a Git repository or Git is not installed." }, { status: 400 });
     }
 
-    // 2. Check for changes — scoped to exactly what step 4 stages, so this
-    // never reports "há alterações" for changes outside content/public/images
-    // that would then silently fail to commit.
-    const { stdout: statusOut } = await execAsync("git status --porcelain -- content/ public/images/", { cwd });
+    // 2. Check for any changes in the whole repository — this button publishes
+    // the entire project (code + content), not just the admin-edited content.
+    const { stdout: statusOut } = await execAsync("git status --porcelain", { cwd });
     if (!statusOut.trim()) {
-      return NextResponse.json({ error: "Não existem alterações de conteúdo (imóveis, depoimentos ou imagens) para publicar." }, { status: 400 });
+      return NextResponse.json({ error: "Não existem alterações para publicar." }, { status: 400 });
     }
 
     // 3. Validate JSON files before commit (sanity check) — never publish a corrupted file
@@ -45,11 +44,11 @@ export async function POST(request: Request) {
       }
     }
 
-    // 4. Add only content changes (never code/config files)
-    await execAsync("git add content/ public/images/", { cwd });
+    // 4. Stage everything in the working tree (respects .gitignore)
+    await execAsync("git add -A", { cwd });
 
     // 5. Commit
-    const message = `content: update properties and testimonials content via admin - ${new Date().toISOString()}`;
+    const message = `publish: update site via admin - ${new Date().toISOString()}`;
     await execAsync(`git commit -m "${message}"`, { cwd });
 
     // 6. Push
