@@ -5,7 +5,18 @@ import { Quote, Star } from "lucide-react";
 import { motion, useMotionValue } from "framer-motion";
 import styles from "./Testimonials.module.css";
 import RevealOnScroll from "./RevealOnScroll";
-import testimonialsData from "../../content/testimonials.json";
+import testimonialsDataRaw from "../../content/testimonials.json";
+
+interface Testimonial {
+  id: string | number;
+  status: string;
+  rating: number;
+  text: string;
+  author: string;
+  role: string;
+}
+
+const testimonialsData = testimonialsDataRaw as Testimonial[];
 
 export default function Testimonials() {
   const [width, setWidth] = useState(0);

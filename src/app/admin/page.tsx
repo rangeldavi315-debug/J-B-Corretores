@@ -85,7 +85,6 @@ export default function AdminPanel() {
   }, []);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- carrega dados do servidor ao montar se já havia sessão salva
     if (isAuth) loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -69,7 +69,6 @@ export default function Properties() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if ([...params.keys()].length > 0) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- sincroniza estado inicial com a URL do navegador, sem equivalente em render
       setFilters(filtersFromSearchParams(params));
     }
     hydratedFromUrl.current = true;

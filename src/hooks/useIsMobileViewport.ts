@@ -11,7 +11,6 @@ export function useIsMobileViewport(breakpoint = 860): boolean {
 
   useEffect(() => {
     const mq = window.matchMedia(`(max-width: ${breakpoint}px)`);
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- sincroniza o estado inicial com o media query do navegador (não tem equivalente em render)
     setIsMobile(mq.matches);
     const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
     mq.addEventListener("change", handler);
