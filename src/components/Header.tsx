@@ -90,27 +90,11 @@ export default function Header() {
               className={styles.logo}
               priority
             />
+            <div className={styles.brandText}>
+              <span className={styles.brandMain}>J&amp;B</span>
+              <span className={styles.brandSub}>Corretores</span>
+            </div>
           </div>
-
-          {/* Desktop Nav */}
-          <nav className={styles.desktopNav}>
-            {navItems.map((item) => (
-              <button 
-                key={item.id} 
-                onClick={() => scrollToSection(item.id)} 
-                className={`${styles.navLink} ${activeSection === item.id ? styles.active : ""}`}
-              >
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="headerNavIndicator"
-                    className={styles.navIndicator}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-                <span className={styles.navLabel}>{item.label}</span>
-              </button>
-            ))}
-          </nav>
 
           <div className={styles.actions}>
             <button onClick={() => scrollToSection("final-cta")} className="btn-primary">

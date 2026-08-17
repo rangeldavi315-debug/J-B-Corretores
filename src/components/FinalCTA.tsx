@@ -54,7 +54,7 @@ export default function FinalCTA() {
                   </div>
                   <div>
                     <h3 className={styles.agentName}>{jonathan.name}</h3>
-                    <div className={styles.agentCreci}>CRECI F - {jonathan.creci}</div>
+                    <div className={styles.agentCreci}>C.F.: {jonathan.creci}</div>
                   </div>
                 </div>
                 <a 
@@ -77,7 +77,7 @@ export default function FinalCTA() {
                   </div>
                   <div>
                     <h3 className={styles.agentName}>{barbara.name}</h3>
-                    <div className={styles.agentCreci}>CRECI F - {barbara.creci}</div>
+                    <div className={styles.agentCreci}>C.F.: {barbara.creci}</div>
                   </div>
                 </div>
                 <a 
