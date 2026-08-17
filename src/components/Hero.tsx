@@ -59,7 +59,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className={styles.subheadline}
           >
-            Encontre os loteamentos mais nobres e imóveis de alto padrão em Goiânia e região com o acompanhamento jurídico e a discrição que você exige.
+            Lotes, casas e imóveis para todos os gostos! Encontre o imóvel ideal para você, com atendimento do jeito que merece.
           </motion.p>
 
           <motion.div

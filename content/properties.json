@@ -16,7 +16,7 @@
     "order": 1,
     "whatsappAgentId": "62996367042",
     "createdAt": "2026-08-16T23:22:36.371Z",
-    "updatedAt": "2026-08-16T23:27:21.123Z",
+    "updatedAt": "2026-08-17T00:26:40.428Z",
     "category": "loteamento",
     "data": {
       "lotTypes": [],
@@ -34,7 +34,8 @@
         "Pracinha",
         "Playground"
       ],
-      "minLotSize": 225
+      "minLotSize": 225,
+      "ctaLabel": "EU QUERO!"
     },
     "coverImagePosition": "50% 0%",
     "state": "GO",

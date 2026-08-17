@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { MessageSquare, ArrowRight } from "lucide-react";
 import styles from "./FinalCTA.module.css";
 import companyData from "../../content/company.json";
@@ -48,7 +49,9 @@ export default function FinalCTA() {
               {/* Jonathan */}
               <div className={styles.agentCard}>
                 <div className={styles.agentHeader}>
-                  <div className={styles.avatarPlaceholder}>J</div>
+                  <div className={styles.avatarPlaceholder}>
+                    <Image src="/images/agents/jonathan.jpg" alt={jonathan.name} fill style={{ objectFit: "cover" }} sizes="50px" />
+                  </div>
                   <div>
                     <h3 className={styles.agentName}>{jonathan.name}</h3>
                     <div className={styles.agentCreci}>CRECI F - {jonathan.creci}</div>
@@ -69,7 +72,9 @@ export default function FinalCTA() {
               {/* Bárbara Rios */}
               <div className={styles.agentCard}>
                 <div className={styles.agentHeader}>
-                  <div className={styles.avatarPlaceholder} style={{ background: "rgba(212, 175, 55, 0.15)", color: "#D4AF37" }}>B</div>
+                  <div className={styles.avatarPlaceholder}>
+                    <Image src="/images/agents/barbara.jpg" alt={barbara.name} fill style={{ objectFit: "cover" }} sizes="50px" />
+                  </div>
                   <div>
                     <h3 className={styles.agentName}>{barbara.name}</h3>
                     <div className={styles.agentCreci}>CRECI F - {barbara.creci}</div>
