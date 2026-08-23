@@ -1,61 +1,85 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, Users, Building, ShieldCheck, type LucideIcon } from "lucide-react";
+import { ShieldCheck, UserCheck, Home, Handshake } from "lucide-react";
 import styles from "./Indicators.module.css";
-import { useCountUp } from "../hooks/useCountUp";
 
-interface IndicatorData {
-  id: number;
-  end: number;
-  prefix?: string;
-  suffix?: string;
-  label: string;
-  description: string;
-  icon: LucideIcon;
-}
-
-const indicatorsData: IndicatorData[] = [
-  { id: 1, end: 10, suffix: "+", label: "Anos de Experiência", description: "Atuando no mercado de luxo", icon: Star },
-  { id: 2, end: 500, suffix: "+", label: "Famílias Atendidas", description: "Clientes plenamente satisfeitos", icon: Users },
-  { id: 3, end: 250, prefix: "R$ ", suffix: "M+", label: "Em Negócios", description: "Volume geral de vendas", icon: Building },
-  { id: 4, end: 100, suffix: "%", label: "Segurança", description: "Garantia jurídica e transparência", icon: ShieldCheck },
+const benefits = [
+  {
+    icon: ShieldCheck,
+    title: "NEGÓCIOS\nSEGUROS",
+    description: "Transparência e segurança\nem cada etapa.",
+  },
+  {
+    icon: UserCheck,
+    title: "ATENDIMENTO\nPERSONALIZADO",
+    description: "Entendemos você para\nentregar o melhor.",
+  },
+  {
+    icon: Home,
+    title: "IMÓVEIS\nSELECIONADOS",
+    description: "Opções escolhidas com\ncritério e excelência.",
+  },
+  {
+    icon: Handshake,
+    title: "EXPERIÊNCIA QUE\nGERA CONFIANÇA",
+    description: "Anos de mercado, resultados\ne clientes satisfeitos.",
+  },
 ];
-
-function IndicatorCard({ data, index }: { data: IndicatorData; index: number }) {
-  const { count, ref } = useCountUp(data.end, 2000, true);
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.15 }}
-      className={styles.card}
-    >
-      <div className={styles.iconWrapper}>
-        <data.icon size={28} className={styles.icon} />
-      </div>
-      <h3 className={styles.number}>
-        {data.prefix}{count}{data.suffix}
-      </h3>
-      <h4 className={styles.label}>{data.label}</h4>
-      <p className={styles.description}>{data.description}</p>
-    </motion.div>
-  );
-}
 
 export default function Indicators() {
   return (
     <section className={styles.section}>
-      <div className="container">
-        <div className={styles.grid}>
-          {indicatorsData.map((item, index) => (
-            <IndicatorCard key={item.id} data={item} index={index} />
+      {/* Benefits Strip */}
+      <div className={styles.stripWrapper}>
+        <div className={`${styles.strip} container`}>
+          {benefits.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={styles.benefit}
+            >
+              <div className={styles.benefitIcon}>
+                <item.icon size={36} strokeWidth={1.5} />
+              </div>
+              <div className={styles.benefitText}>
+                <h4 className={styles.benefitTitle}>{item.title}</h4>
+                <p className={styles.benefitDesc}>{item.description}</p>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Tagline */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className={`${styles.taglineWrapper} container`}
+      >
+        <p className={styles.taglineWords}>
+          <span>CONEXÃO</span>
+          <span className={styles.diamond}>◆</span>
+          <span>EXPERIÊNCIA</span>
+          <span className={styles.diamond}>◆</span>
+          <span>RESULTADO</span>
+        </p>
+        <p className={styles.taglineSub}>
+          J&B CORRETORES, CONECTANDO VOCÊ AO IMÓVEL CERTO E AO FUTURO QUE VOCÊ MERECE.
+        </p>
+        <div className={styles.ornament}>
+          <div className={styles.ornamentLine} />
+          <div className={styles.ornamentCenter}>
+            <span className={styles.ornamentDiamond}>◆</span>
+          </div>
+          <div className={styles.ornamentLine} />
+        </div>
+      </motion.div>
     </section>
   );
 }

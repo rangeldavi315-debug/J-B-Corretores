@@ -3,29 +3,24 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
+import { FaWhatsapp } from "react-icons/fa"; // Better whatsapp icon
+import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Header.module.css";
 import companyData from "../../content/company.json";
 
 const navItems = [
-  { id: "home", label: "Início" },
-  { id: "about", label: "Quem Somos" },
-  { id: "properties", label: "Empreendimentos" },
-  { id: "diferenciais", label: "Diferenciais" },
-  { id: "testimonials", label: "Depoimentos" },
+  { id: "home", label: "INÍCIO" },
+  { id: "properties", label: "IMÓVEIS" },
+  { id: "properties", label: "LOTEAMENTOS" }, // Routing to properties for now
+  { id: "properties", label: "EMPREENDIMENTOS" },
+  { id: "about", label: "SOBRE NÓS" },
+  { id: "final-cta", label: "CONTATO" },
 ];
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,34 +30,9 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const observers = navItems.map((item) => {
-      const element = document.getElementById(item.id);
-      if (!element) return null;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(item.id);
-            }
-          });
-        },
-        { rootMargin: "-50% 0px -50% 0px" } // trigger when section is in the middle of viewport
-      );
-      observer.observe(element);
-      return { element, observer };
-    });
-
-    return () => {
-      observers.forEach((obs) => {
-        if (obs) obs.observer.unobserve(obs.element);
-      });
-    };
-  }, []);
-
   const scrollToSection = (id: string) => {
     setIsMobileMenuOpen(false);
+    setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
       const offset = 80;
@@ -77,16 +47,20 @@ export default function Header() {
     }
   };
 
+  const primaryAgent = companyData.agents[0];
+  const whatsappUrl = `https://wa.me/${primaryAgent.whatsapp}?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20imóveis%20disponíveis.`;
+
   return (
     <>
       <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
-        <div className={`${styles.container} container`}>
+        <div className={styles.container}>
+          {/* Logo */}
           <div className={styles.logoContainer} onClick={() => scrollToSection("home")}>
             <Image
               src="/logo.png"
               alt={companyData.name}
-              width={72}
-              height={72}
+              width={68}
+              height={68}
               className={styles.logo}
               priority
             />
@@ -96,10 +70,30 @@ export default function Header() {
             </div>
           </div>
 
+          {/* Desktop Nav */}
+          <nav className={styles.desktopNav}>
+            {navItems.map((item, index) => (
+              <button 
+                key={`${item.id}-${index}`} 
+                onClick={() => scrollToSection(item.id)} 
+                className={`${styles.navLink} ${activeSection === item.id ? styles.navActive : ""}`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </nav>
+
+          {/* Desktop WhatsApp CTA */}
           <div className={styles.actions}>
-            <button onClick={() => scrollToSection("final-cta")} className="btn-primary">
-              Quero Consultoria
-            </button>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.whatsappBtn}
+            >
+              <FaWhatsapp size={18} />
+              <span>FALAR PELO WHATSAPP</span>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -108,21 +102,21 @@ export default function Header() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X size={24} className="gold-highlight" /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={28} className={styles.goldText} /> : <Menu size={28} className={styles.goldText} />}
           </button>
         </div>
         
-        {/* Progress Bar */}
-        <motion.div className={styles.progressBar} style={{ scaleX }} />
+        {/* Bottom line */}
+        <div className={styles.headerLine} />
       </header>
 
       {/* Mobile Nav Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            animate={{ opacity: 1, backdropFilter: "blur(10px)" }}
-            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className={styles.mobileMenu}
           >
@@ -133,9 +127,9 @@ export default function Header() {
               transition={{ delay: 0.1 }}
               className={styles.mobileNav}
             >
-              {navItems.map((item) => (
+              {navItems.map((item, index) => (
                 <button 
-                  key={item.id} 
+                  key={`${item.id}-${index}`} 
                   onClick={() => scrollToSection(item.id)} 
                   className={`${styles.mobileNavLink} ${activeSection === item.id ? styles.mobileActive : ""}`}
                 >
@@ -145,9 +139,15 @@ export default function Header() {
               
               <div className={styles.mobileMenuDivider} />
               
-              <button onClick={() => scrollToSection("final-cta")} className="btn-primary" style={{ width: "100%" }}>
-                Quero Consultoria
-              </button>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.mobileWhatsapp}
+              >
+                <FaWhatsapp size={20} />
+                <span>FALAR PELO WHATSAPP</span>
+              </a>
             </motion.nav>
           </motion.div>
         )}

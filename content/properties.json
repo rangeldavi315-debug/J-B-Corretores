@@ -16,7 +16,7 @@
     "order": 1,
     "whatsappAgentId": "62996367042",
     "createdAt": "2026-08-16T23:22:36.371Z",
-    "updatedAt": "2026-08-17T00:26:40.428Z",
+    "updatedAt": "2026-08-23T14:11:30.232Z",
     "category": "loteamento",
     "data": {
       "lotTypes": [],
@@ -41,5 +41,62 @@
     "state": "GO",
     "neighborhood": "Noroeste Park",
     "googleMapsUrl": "https://www.google.com/maps/place/Residencial+Noroeste+Park/@-16.5711875,-49.3716371,18.5z/data=!4m10!1m2!2m1!1snoroeste+park+goianira!3m6!1s0x935e6180a594ec39:0x774a2a0008d8456c!8m2!3d-16.5704687!4d-49.3715589!15sChZub3JvZXN0ZSBwYXJrIGdvaWFuaXJhkgEObGFuZF9hbGxvdG1lbnTgAQA!16s%2Fg%2F11qpz5v5mq?entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D"
+  },
+  {
+    "id": "1787494289255",
+    "slug": "cidade-das-flores",
+    "title": "Cidade das Flores",
+    "status": "published",
+    "city": "Goianira",
+    "description": "🏡 Seu lote no coração de Goianira pode começar com apenas R$ 466/mês!\n\nConheça o Loteamento Cidade das Flores, no Centro de Goianira, ao lado do Lago Municipal e da GO-070.\n\n✨ Lotes planos a partir de 225 m²\n🛣️ Asfalto e infraestrutura completa\n💧 Água tratada + energia elétrica\n🌳 Praça de convivência\n💪 Academia ao ar livre\n🛝 Playground\n📈 Região com potencial de valorização\n\nPerfeito para quem quer construir, morar ou investir em uma localização estratégica.\n\n🔥 A partir de R$ 466,00/mês.\n\n📲 Quer saber as condições e garantir seu lote? Chame agora!",
+    "coverImage": "/images/properties/1787494221175-imagem-do-codex-23-de-ago--de-2026--11-08-27.png",
+    "images": [
+      "/images/properties/1787494225940-imagem-do-codex-23-de-ago--de-2026--11-08-37.png",
+      "/images/properties/1787494194471-imagem-do-codex-23-de-ago--de-2026--11-09-07.png",
+      "/images/properties/1787494230834-imagem-do-codex-23-de-ago--de-2026--11-08-44.png",
+      "/images/properties/1787494242257-imagem-do-codex-23-de-ago--de-2026--11-08-50.png",
+      "/images/properties/1787494251284-imagem-do-codex-23-de-ago--de-2026--11-09-07.png"
+    ],
+    "featured": true,
+    "order": 2,
+    "whatsappAgentId": "62996071448",
+    "createdAt": "2026-08-23T13:59:57.033Z",
+    "updatedAt": "2026-08-23T14:11:30.232Z",
+    "category": "loteamento",
+    "data": {
+      "lotTypes": [
+        "Lotes planos, Lotes residenciais, Lotes comerciais"
+      ],
+      "commercial": {
+        "installment": 466,
+        "conditions": "Parcelas a partir de R$ 466,00 mensais com financiamento facilitado direto com a loteadora e sem burocracia."
+      },
+      "infrastructure": [
+        "Asfalto",
+        "Rede de água tratada",
+        "Energia elétrica e iluminação pública",
+        "Praça de convivência",
+        "Academia ao ar livre",
+        "Playground"
+      ],
+      "differentials": [
+        "Ao lado do Lago Municipal de Goianira",
+        "Acesso imediato pela GO-070",
+        "Localização central com alta taxa de valorização",
+        "Terrenos 100% planos e planejados"
+      ],
+      "heroHeadline": "Conquiste o lote dos seus sonhos ao lado do Lago Municipal de Goianira",
+      "heroSubheadline": "Terrenos planejados a partir de 225 m² com infraestrutura completa e parcelas a partir de R$ 466/mês.",
+      "ctaLabel": "Quero garantir meu lote🔥",
+      "whyKnowTitle": "A qualidade de vida que sua família merece no coração de Goianira.",
+      "whyKnowText": "Um empreendimento completo, pronto para construir e estrategicamente posicionado junto à natureza e ao centro da cidade, garantindo alta valorização imediata.",
+      "minLotSize": 225
+    },
+    "state": "GO",
+    "neighborhood": "Centro",
+    "address": "Ao lado da GO-070",
+    "reference": "Ao lado do Lago Municipal de Goianira e da GO-070, no Centro  Foto 2: Conteúdo e Imagens",
+    "googleMapsUrl": "https://maps.app.goo.gl/Hxm5Qa6eZZSiNyYG9",
+    "coverImagePosition": "50% 50%"
   }
 ]

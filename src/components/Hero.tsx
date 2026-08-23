@@ -1,15 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageSquare, ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import styles from "./Hero.module.css";
-import companyData from "../../content/company.json";
-import { useParallax } from "../hooks/useParallax";
+import { FaKey } from "react-icons/fa";
 
 export default function Hero() {
-  const primaryAgent = companyData.agents[0];
-  const parallaxRef = useParallax(0.3); // Moves background 30% speed
-
   const scrollToProperties = () => {
     const element = document.getElementById("properties");
     if (element) {
@@ -26,86 +22,148 @@ export default function Hero() {
 
   return (
     <section id="home" className={styles.hero}>
-      {/* Parallax Background Image */}
-      <div className={styles.parallaxContainer}>
-        <div ref={parallaxRef} className={styles.heroBackground} />
-      </div>
-      
-      <div className={styles.overlay} />
+      {/* BACKGROUND LAYER */}
+      <div className={styles.heroBg} />
+      <div className={styles.heroOverlay} />
 
-      {/* Floating Particles */}
-      <div className={styles.particlesContainer}>
-        {[...Array(5)].map((_, i) => (
-          <div key={i} className={`${styles.particle} ${styles["particle" + (i + 1)]}`} />
-        ))}
-      </div>
-
+      {/* CONTENT LAYER */}
       <div className={`${styles.container} container`}>
-        <div className={styles.content}>
+        <div className={styles.contentArea}>
+          
+          {/* LEFT COLUMN: Logo Composition + Text */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className={styles.leftCol}
           >
-            <h1 className={styles.headline}>
-              Exclusividade <span className="gold-highlight text-gradient-gold">em cada detalhe</span>,<br />
-              Segurança em cada negócio
-            </h1>
-          </motion.div>
+            {/* PURE HTML/SVG 3D LOGO COMPOSITION (NO PNG/JPG) */}
+            <div className={styles.cssLogo}>
+              <svg 
+                viewBox="0 0 600 350" 
+                className={styles.logoSvg} 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  {/* Rich Gold Gradient */}
+                  <linearGradient id="gold" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#FDEAA8" />
+                    <stop offset="25%" stopColor="#D4AF37" />
+                    <stop offset="50%" stopColor="#AA771C" />
+                    <stop offset="60%" stopColor="#8A5A19" />
+                    <stop offset="75%" stopColor="#D4AF37" />
+                    <stop offset="100%" stopColor="#FDEAA8" />
+                  </linearGradient>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className={styles.subheadline}
-          >
-            Lotes, casas e imóveis para todos os gostos! Encontre o imóvel ideal para você, com atendimento do jeito que merece.
-          </motion.p>
+                  {/* 3D Bevel & Lighting Filter */}
+                  <filter id="bevel3d" x="-20%" y="-20%" width="140%" height="140%">
+                    {/* Inner Shadow / Bevel */}
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur" />
+                    <feSpecularLighting in="blur" surfaceScale="3" specularConstant="1.2" specularExponent="30" lightingColor="#FFFFFF" result="specOut">
+                      <fePointLight x="150" y="-50" z="200" />
+                    </feSpecularLighting>
+                    <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut" />
+                    <feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="beveled" />
+                    
+                    {/* Deep Drop Shadow for depth */}
+                    <feDropShadow in="beveled" dx="0" dy="10" stdDeviation="8" floodColor="#000000" floodOpacity="0.9" result="shadow" />
+                    <feDropShadow in="shadow" dx="0" dy="4" stdDeviation="3" floodColor="#000000" floodOpacity="0.7" />
+                  </filter>
+                </defs>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className={styles.buttonGroup}
-          >
-            <button onClick={scrollToProperties} className={`btn-primary ${styles.heroBtnPrimary}`}>
-              <span>Encontrar meu imóvel</span>
-              <ArrowRight size={18} />
-            </button>
+                {/* LOGO GROUP WITH 3D FILTER */}
+                <g filter="url(#bevel3d)" fill="url(#gold)">
+                  
+                  {/* ROOF ORNAMENT */}
+                  <path d="M 300 20 L 120 120 H 150 L 300 40 L 450 120 H 480 Z" />
+                  <path d="M 430 70 V 120 H 460 V 55 Z" />
+                  {/* Roof Window */}
+                  <rect x="282" y="75" width="15" height="15" />
+                  <rect x="303" y="75" width="15" height="15" />
+                  <rect x="282" y="96" width="15" height="15" />
+                  <rect x="303" y="96" width="15" height="15" />
+
+                  {/* Roof Arabesques (Stylized Curves) */}
+                  <path d="M 300 50 Q 260 90 230 70 Q 250 50 280 80 Q 290 90 300 75" fill="none" stroke="url(#gold)" strokeWidth="6" strokeLinecap="round" />
+                  <path d="M 300 50 Q 340 90 370 70 Q 350 50 320 80 Q 310 90 300 75" fill="none" stroke="url(#gold)" strokeWidth="6" strokeLinecap="round" />
+                  
+                  {/* J&B MASSIVE TEXT */}
+                  <text 
+                    x="300" y="240" 
+                    textAnchor="middle" 
+                    fontFamily="var(--font-display), serif" 
+                    fontSize="180" 
+                    fontWeight="500" 
+                    letterSpacing="-0.02em"
+                  >
+                    J&amp;B
+                  </text>
+
+                  {/* ORNAMENTAL LINE */}
+                  <rect x="150" y="275" width="300" height="2" />
+                  <polygon points="300,270 306,276 300,282 294,276" />
+                  <path d="M 285 276 Q 275 265 265 276 Q 275 287 285 276" fill="none" stroke="url(#gold)" strokeWidth="2" />
+                  <path d="M 315 276 Q 325 265 335 276 Q 325 287 315 276" fill="none" stroke="url(#gold)" strokeWidth="2" />
+
+                  {/* CORRETORES TEXT */}
+                  <text 
+                    x="300" y="325" 
+                    textAnchor="middle" 
+                    fontFamily="var(--font-display), serif" 
+                    fontSize="36" 
+                    fontWeight="400" 
+                    letterSpacing="0.4em"
+                  >
+                    CORRETORES
+                  </text>
+
+                </g>
+              </svg>
+            </div>
             
-            <a
-              href={`https://wa.me/${primaryAgent.whatsapp}?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20as%20opções%20de%20imóveis%20exclusivos.`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`btn-secondary ${styles.heroBtnSecondary}`}
-            >
-              <MessageSquare size={18} className="gold-highlight" />
-              <span>Falar pelo WhatsApp</span>
-            </a>
+            {/* Headline */}
+            <h1 className={styles.headline}>
+              SEU PRÓXIMO IMÓVEL<br />
+              COMEÇA COM UMA<br />
+              <span className={styles.headlineGold}>ESCOLHA INTELIGENTE.</span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className={styles.subtitle}>
+              Encontramos oportunidades que combinam com o seu<br />
+              momento, seu projeto e o seu investimento.
+            </p>
           </motion.div>
+
+          {/* RIGHT COLUMN: Conversion Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+            className={styles.rightCol}
+          >
+            <div className={styles.conversionCard}>
+              <div className={styles.cardIcon}>
+                <FaKey size={18} />
+              </div>
+              
+              <h2 className={styles.cardTitle}>
+                O IMÓVEL CERTO.<br />O NEGÓCIO CERTO.
+              </h2>
+              <p className={styles.cardDescription}>
+                Mais que imóveis, entregamos segurança,<br />
+                confiança e as melhores oportunidades<br />
+                para você realizar.
+              </p>
+              <button onClick={scrollToProperties} className={styles.cardCta}>
+                <span>VER IMÓVEIS DISPONÍVEIS</span>
+                <ArrowRight size={16} />
+              </button>
+            </div>
+          </motion.div>
+
         </div>
       </div>
-
-      {/* Animated Bottom Accent Line */}
-      <motion.div 
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 1.5, delay: 0.8, ease: "easeInOut" }}
-        className={styles.bottomAccent} 
-      />
-
-      {/* Scroll Indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 1 }}
-        className={styles.scrollIndicator}
-      >
-        <div className={styles.mouse}>
-          <div className={styles.wheel} />
-        </div>
-        <ChevronDown size={20} className={styles.chevron} />
-      </motion.div>
     </section>
   );
 }

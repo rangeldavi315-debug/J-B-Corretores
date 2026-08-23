@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Sora, Poppins } from "next/font/google";
+import { Sora, Poppins, Cinzel } from "next/font/google";
 import "./globals.css";
 import seoData from "../../content/seo.json";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -15,6 +15,13 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   variable: "--font-poppins",
+  display: "swap",
+});
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-cinzel",
   display: "swap",
 });
 
@@ -67,7 +74,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="pt-BR" className={`${sora.variable} ${poppins.variable}`}>
+    <html lang="pt-BR" className={`${sora.variable} ${poppins.variable} ${cinzel.variable}`}>
       <head>
         <link rel="canonical" href={seoData.siteUrl} />
         <script
