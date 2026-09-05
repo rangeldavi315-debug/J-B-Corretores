@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getVisibleProperties } from "@/lib/properties";
 
-const baseUrl = "https://jbcorretores.com.br";
+const baseUrl = "https://jbcorretoresimobiliarios.com.br";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const properties = await getVisibleProperties();

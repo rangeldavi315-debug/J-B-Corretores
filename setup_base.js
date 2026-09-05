@@ -57,7 +57,7 @@ async function run() {
     description: "Consultoria imobiliária premium especializada em imóveis de luxo, loteamentos e condomínios fechados em Goiânia. Atendimento exclusivo e segurança jurídica.",
     keywords: ["imóveis de luxo", "Goiânia", "loteamentos fechados", "casas de alto padrão", "consultor imobiliário", "condomínio fechado"],
     ogImage: "/logo.png",
-    siteUrl: "https://jbcorretores.com.br"
+    siteUrl: "https://jbcorretoresimobiliarios.com.br"
   };
 
   const social = {
@@ -113,7 +113,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin/', '/api/admin/'],
     },
-    sitemap: 'https://jbcorretores.com.br/sitemap.xml',
+    sitemap: 'https://jbcorretoresimobiliarios.com.br/sitemap.xml',
   }
 }
 `;
@@ -124,7 +124,7 @@ export default function robots(): MetadataRoute.Robots {
 import propertiesData from '../../content/properties.json'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://jbcorretores.com.br'
+  const baseUrl = 'https://jbcorretoresimobiliarios.com.br'
 
   const propertiesUrls = propertiesData
     .filter(p => p.status === 'active')
