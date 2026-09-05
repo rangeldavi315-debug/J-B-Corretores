@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin/', '/api/admin/'],
     },
-    sitemap: 'https://jbcorretoresimobiliarios.com.br/sitemap.xml',
+    sitemap: 'https://www.jbcorretoresimobiliarios.com.br/sitemap.xml',
   }
 }
