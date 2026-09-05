@@ -1,6 +1,6 @@
 {
-  "name": "JB Consultores Imobiliários",
-  "about": "Excelência em consultoria imobiliária, conectando pessoas aos melhores negócios com confiança, transparência e profissionalismo.",
+  "name": "J&B Corretores",
+  "about": "Excelência em corretagem imobiliária, conectando pessoas aos melhores negócios com confiança, transparência e profissionalismo.",
   "address": "Goiânia, GO",
   "email": "jbconsultoriaimoveis@gmail.com",
   "agents": [
@@ -42,7 +42,7 @@
   "diferenciais": [
     {
       "title": "Atendimento Personalizado",
-      "description": "Consultoria exclusiva, desenhada para entender profundamente suas necessidades e superar suas expectativas.",
+      "description": "Corretagem exclusiva, desenhada para entender profundamente suas necessidades e superar suas expectativas.",
       "icon": "UserCheck"
     },
     {
@@ -56,7 +56,7 @@
       "icon": "Eye"
     },
     {
-      "title": "Consultoria Especializada",
+      "title": "Corretagem Especializada",
       "description": "Profundo conhecimento de mercado para identificar as melhores oportunidades de valorização.",
       "icon": "Bookmark"
     },

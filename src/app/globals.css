@@ -12,6 +12,14 @@
   --font-primary: var(--font-sora), 'Sora', sans-serif;
   --font-secondary: var(--font-poppins), 'Poppins', sans-serif;
   --font-display: var(--font-cinzel), 'Cinzel', Georgia, serif;
+  /* Alias para --font-trajan: usado em Diferenciais/AboutUs/FinalCTA/Footer/
+     Properties/Testimonials, mas nunca foi definido em lugar nenhum — o
+     browser descartava a declaração inteira e caía no herdado (Poppins),
+     então metade dos títulos "premium" do site não usava a fonte de destaque
+     pretendida. Aponta para a mesma Cinzel já carregada (mesma família usada
+     no logo do Header/Hero), o que também unifica a identidade visual em vez
+     de misturar duas serifas de exibição diferentes. */
+  --font-trajan: var(--font-cinzel), 'Cinzel', Georgia, serif;
   
   --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-slow: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);

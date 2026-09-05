@@ -20,7 +20,7 @@ export default function AboutUs() {
               <div className={styles.imageFrame} />
               <Image
                 src="/images/agents.jpg"
-                alt="Corretores JB Consultoria"
+                alt="Corretores JB Corretagem"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className={styles.image}
@@ -42,11 +42,11 @@ export default function AboutUs() {
             </p>
 
             <div className={styles.agentsInfo}>
-              <p>Conheça nossos consultores especialistas:</p>
+              <p>Conheça nossos corretores especialistas:</p>
               <ul>
                 {companyData.agents.map((agent) => (
                   <li key={agent.creci}>
-                    <strong>{agent.name}</strong> – CRECI F {agent.creci}
+                    <strong>{agent.name}</strong> – CRECI: {agent.creci}
                   </li>
                 ))}
               </ul>
@@ -70,7 +70,7 @@ export default function AboutUs() {
             </div>
 
             <button onClick={scrollToFinalCta} className="btn-secondary" style={{ marginTop: "2rem" }}>
-              Conheça nossa consultoria
+              Conheça nossa corretagem
             </button>
           </RevealOnScroll>
         </div>

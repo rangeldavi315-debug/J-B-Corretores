@@ -47,7 +47,7 @@ export default function Testimonials() {
           <div className={styles.header}>
             <h2 className="title-premium-center">O Que Dizem Nossos Clientes</h2>
             <p className={styles.intro}>
-              A satisfação de quem confia em nossa consultoria é o nosso maior patrimônio.
+              A satisfação de quem confia em nossa corretagem é o nosso maior patrimônio.
             </p>
           </div>
         </RevealOnScroll>

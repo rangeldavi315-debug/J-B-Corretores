@@ -202,7 +202,7 @@ export default function ApartmentTemplate({ property, agent, whatsappLink }: Pro
             </div>
             <div>
               <p className={styles.agentName}>{agent.name}</p>
-              <p className={styles.agentRole}>Consultor(a) JB Consultores Imobiliários — CRECI F-{agent.creci}</p>
+              <p className={styles.agentRole}>Corretor(a) J&B Corretores — CRECI: {agent.creci}</p>
               <p className={styles.agentText}>
                 Atendimento direto, sem intermediários: você fala com {agent.name.split(" ")[0]} desde a primeira dúvida até a assinatura,
                 com segurança jurídica e transparência em cada etapa.

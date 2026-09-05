@@ -1,8 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Sora, Poppins, Cinzel } from "next/font/google";
 import "./globals.css";
 import seoData from "../../content/seo.json";
+import companyData from "../../content/company.json";
+import socialData from "../../content/social.json";
 import ScrollToTop from "@/components/ScrollToTop";
+import { toJsonLd } from "@/lib/jsonLd";
 
 const sora = Sora({
   subsets: ["latin"],
@@ -30,12 +33,15 @@ export const metadata: Metadata = {
   title: seoData.title,
   description: seoData.description,
   keywords: seoData.keywords,
-  authors: [{ name: "JB Consultores Imobiliários" }],
+  authors: [{ name: "J&B Corretores" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: seoData.title,
     description: seoData.description,
     url: seoData.siteUrl,
-    siteName: "JB Consultores Imobiliários",
+    siteName: "J&B Corretores",
     images: [
       {
         url: seoData.ogImage,
@@ -53,33 +59,44 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#000000",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const primaryAgent = companyData.agents[0];
+
   const schemaOrg = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "RealEstateAgent"],
     "name": seoData.title,
-    "image": seoData.ogImage,
+    "image": new URL(seoData.ogImage, seoData.siteUrl).toString(),
     "description": seoData.description,
+    "telephone": primaryAgent.phone,
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Goiânia",
       "addressRegion": "GO",
       "addressCountry": "BR"
     },
-    "url": seoData.siteUrl
+    "url": seoData.siteUrl,
+    // Só links de perfil reais e específicos — o LinkedIn cadastrado é
+    // apenas o domínio genérico (sem página da empresa), então fica de fora.
+    "sameAs": [socialData.instagram, socialData.facebook]
   };
 
   return (
     <html lang="pt-BR" className={`${sora.variable} ${poppins.variable} ${cinzel.variable}`}>
       <head>
-        <link rel="canonical" href={seoData.siteUrl} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
+          dangerouslySetInnerHTML={{ __html: toJsonLd(schemaOrg) }}
         />
       </head>
       <body>

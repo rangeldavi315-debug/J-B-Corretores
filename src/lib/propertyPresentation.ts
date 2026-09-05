@@ -30,10 +30,35 @@ export function getSeoTitle(property: Property, companyName: string): string {
   return `${property.title} — ${CATEGORY_SEO_SUFFIX[property.category]} em ${property.city} | ${companyName}`;
 }
 
+/**
+ * Descrições cadastradas usam emoji e **negrito** em markdown para ficarem
+ * bonitas no WhatsApp/anúncios — mas isso vaza como texto cru (asteriscos,
+ * quebras de linha) em <meta description> e og:description. Nunca publica
+ * isso sem sanitizar antes.
+ */
+function sanitizeForMetaText(text: string): string {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/\*(.*?)\*/g, "$1")
+    .replace(/[\u{1F000}-\u{1FFFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{2190}-\u{21FF}️]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export function getSeoDescription(property: Property): string {
-  if (property.seo?.description) return property.seo.description;
-  const text = property.description.trim();
+  if (property.seo?.description) return sanitizeForMetaText(property.seo.description);
+  const text = sanitizeForMetaText(property.description);
   return text.length > 160 ? `${text.slice(0, 157)}...` : text;
+}
+
+/**
+ * Preço total "de verdade" para dados estruturados (schema.org Offer) — nunca
+ * a parcela mensal, que não é o preço do imóvel e enganaria o Google se
+ * publicada como tal. Retorna undefined quando só existe condição parcelada.
+ */
+export function getSchemaPrice(property: Property): number | undefined {
+  if (property.category === "loteamento") return property.data.commercial.priceFrom;
+  return property.data.price;
 }
 
 /** Preço de destaque para o card do grid — nunca confunde preço total com parcela/entrada. */

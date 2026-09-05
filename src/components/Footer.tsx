@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Instagram, Phone, MapPin, Mail, Shield } from "lucide-react";
+import { Instagram, Facebook, Phone, MapPin, Mail, Shield } from "lucide-react";
 import styles from "./Footer.module.css";
 import companyData from "../../content/company.json";
 import socialData from "../../content/social.json";
@@ -40,16 +40,18 @@ export default function Footer() {
               className={styles.logo}
             />
             <div>
-              <p style={{ fontFamily: "var(--font-trajan)", fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>JB Consultores</p>
+              <p style={{ fontFamily: "var(--font-trajan)", fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>J&B Corretores</p>
               <p style={{ fontSize: "0.7rem", color: "var(--color-text-muted)" }}>Imobiliários</p>
             </div>
           </div>
             <p className={styles.about}>{companyData.about}</p>
             <div className={styles.social}>
-              <a href={socialData.instagram} target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+              <a href={socialData.instagram} target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label="Instagram">
                 <Instagram size={20} />
               </a>
-              {/* Other socials could go here */}
+              <a href={socialData.facebook} target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label="Facebook">
+                <Facebook size={20} />
+              </a>
             </div>
             
             <div className={styles.creciBadge}>

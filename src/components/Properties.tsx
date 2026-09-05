@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, MessageSquare, Maximize2 } from "lucide-react";
 import styles from "./Properties.module.css";
@@ -182,9 +183,9 @@ export default function Properties() {
                     </div>
 
                     <div className={styles.cardFooter}>
-                      <a href={`/imovel/${prop.slug}`} className={styles.detailLink}>
+                      <Link href={`/imovel/${prop.slug}`} className={styles.detailLink}>
                         Ver detalhes
-                      </a>
+                      </Link>
                       <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className={styles.ctaButton}>
                         <MessageSquare size={16} />
                         <span>Quero saber mais</span>

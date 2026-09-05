@@ -4,6 +4,17 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import styles from "./Hero.module.css";
 import { FaKey } from "react-icons/fa";
+import { ImageCarousel } from "./property-templates/ImageCarousel";
+
+/** Fotos do "tour" da Hero — alternam num carrossel automático com crossfade. */
+const HERO_IMAGES = [
+  "/images/hero/hero-01-entrada.jpg",
+  "/images/hero/hero-02-sala.jpg",
+  "/images/hero/hero-03-lounge.jpg",
+  "/images/hero/hero-04-cozinha.jpg",
+  "/images/hero/hero-05-corredor.jpg",
+  "/images/hero/hero-06-quarto.jpg",
+];
 
 export default function Hero() {
   const scrollToProperties = () => {
@@ -22,8 +33,17 @@ export default function Hero() {
 
   return (
     <section id="home" className={styles.hero}>
-      {/* BACKGROUND LAYER */}
-      <div className={styles.heroBg} />
+      {/* BACKGROUND LAYER — carrossel automático com crossfade entre as 6 fotos */}
+      <div className={styles.heroBg}>
+        <ImageCarousel
+          images={HERO_IMAGES}
+          alt="J&B Corretores — apartamento de alto padrão"
+          intervalMs={4500}
+          priority
+          showArrows={false}
+          objectPosition="center right"
+        />
+      </div>
       <div className={styles.heroOverlay} />
 
       {/* CONTENT LAYER */}
@@ -39,14 +59,20 @@ export default function Hero() {
           >
             {/* PURE HTML/SVG 3D LOGO COMPOSITION (NO PNG/JPG) */}
             <div className={styles.cssLogo}>
-              <svg 
-                viewBox="0 0 600 350" 
-                className={styles.logoSvg} 
+              <div className={styles.logoWrap}>
+              <div className={styles.logoGlow} aria-hidden="true" />
+              <svg
+                viewBox="0 0 600 350"
+                className={styles.logoSvg}
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <defs>
-                  {/* Rich Gold Gradient */}
-                  <linearGradient id="gold" x1="0%" y1="0%" x2="0%" y2="100%">
+                  {/* Rich Gold Gradient — userSpaceOnUse: uma única "chapa" de
+                      dourado fixa no viewBox, para que o texto grande, os
+                      traços finos e o CORRETORES pequeno leiam o mesmo
+                      gradiente em vez de cada forma calcular o seu próprio
+                      (o que deixava os elementos com tons de ouro diferentes) */}
+                  <linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="300" y1="20" x2="300" y2="330">
                     <stop offset="0%" stopColor="#FDEAA8" />
                     <stop offset="25%" stopColor="#D4AF37" />
                     <stop offset="50%" stopColor="#AA771C" />
@@ -119,8 +145,9 @@ export default function Hero() {
 
                 </g>
               </svg>
+              </div>
             </div>
-            
+
             {/* Headline */}
             <h1 className={styles.headline}>
               SEU PRÓXIMO IMÓVEL<br />

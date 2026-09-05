@@ -11,7 +11,7 @@ export default function FinalCTA() {
 
   const steps = [
     { num: "01", title: "Fale Conosco", desc: "Entre em contato via WhatsApp" },
-    { num: "02", title: "Agenda Privativa", desc: "Consultoria exclusiva e sigilosa" },
+    { num: "02", title: "Agenda Privativa", desc: "Corretagem exclusiva e sigilosa" },
     { num: "03", title: "Imóvel Ideal", desc: "Fechamento com segurança" },
   ];
 
@@ -23,9 +23,9 @@ export default function FinalCTA() {
           <div className={styles.glassPanel}>
             
             <div className={styles.content}>
-              <h2 className={styles.title}>Agende uma Consultoria Privativa</h2>
+              <h2 className={styles.title}>Agende uma Corretagem Privativa</h2>
               <p className={styles.description}>
-                Estamos prontos para ouvir suas necessidades e planejar a aquisição do seu imóvel ideal com segurança e privacidade. Fale diretamente com o consultor de sua escolha.
+                Estamos prontos para ouvir suas necessidades e planejar a aquisição do seu imóvel ideal com segurança e privacidade. Fale diretamente com o corretor de sua escolha.
               </p>
 
               {/* Timeline Steps */}
@@ -54,11 +54,11 @@ export default function FinalCTA() {
                   </div>
                   <div>
                     <h3 className={styles.agentName}>{jonathan.name}</h3>
-                    <div className={styles.agentCreci}>C.F.: {jonathan.creci}</div>
+                    <div className={styles.agentCreci}>CRECI: {jonathan.creci}</div>
                   </div>
                 </div>
                 <a 
-                  href={`https://wa.me/${jonathan.whatsapp}?text=Olá,%20Jonathan.%20Gostaria%20de%20agendar%20uma%20consultoria%20imobiliária.`}
+                  href={`https://wa.me/${jonathan.whatsapp}?text=Olá,%20Jonathan.%20Gostaria%20de%20agendar%20um%20atendimento%20imobiliária.`}
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="btn-primary"
@@ -77,11 +77,11 @@ export default function FinalCTA() {
                   </div>
                   <div>
                     <h3 className={styles.agentName}>{barbara.name}</h3>
-                    <div className={styles.agentCreci}>C.F.: {barbara.creci}</div>
+                    <div className={styles.agentCreci}>CRECI: {barbara.creci}</div>
                   </div>
                 </div>
                 <a 
-                  href={`https://wa.me/${barbara.whatsapp}?text=Olá,%20Bárbara.%20Gostaria%20de%20agendar%20uma%20consultoria%20imobiliária.`}
+                  href={`https://wa.me/${barbara.whatsapp}?text=Olá,%20Bárbara.%20Gostaria%20de%20agendar%20um%20atendimento%20imobiliária.`}
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="btn-primary"

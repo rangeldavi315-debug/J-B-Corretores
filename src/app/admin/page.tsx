@@ -236,7 +236,7 @@ export default function AdminPanel() {
               </div>
               <div>
                 <p style={{ fontSize: "0.72rem", color: "#D4AF37", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em" }}>Admin CMS</p>
-                <p style={{ fontSize: "0.65rem", color: "#555" }}>JB Consultores</p>
+                <p style={{ fontSize: "0.65rem", color: "#555" }}>J&B Corretores</p>
               </div>
             </div>
           </div>

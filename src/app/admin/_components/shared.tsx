@@ -92,7 +92,7 @@ export function LoginScreen({ onLogin }: { onLogin: (p: string) => void }) {
             <Key size={28} style={{ color: "#D4AF37" }} />
           </div>
           <h1 style={{ fontFamily: "Georgia,serif", color: "#D4AF37", fontSize: "1.4rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>Painel Admin</h1>
-          <p style={{ color: "#888", fontSize: "0.85rem", marginTop: "0.5rem" }}>JB Consultores Imobiliários</p>
+          <p style={{ color: "#888", fontSize: "0.85rem", marginTop: "0.5rem" }}>J&B Corretores</p>
         </div>
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <input type="password" placeholder="Chave de acesso" value={pass} onChange={(e) => setPass(e.target.value)} autoFocus style={inp} onFocus={(e) => (e.target.style.borderColor = "#D4AF37")} onBlur={(e) => (e.target.style.borderColor = "rgba(255,255,255,0.1)")} />
