@@ -11,9 +11,10 @@ import companyData from "../../content/company.json";
 import RevealOnScroll from "./RevealOnScroll";
 import PropertyFilters from "./PropertyFilters";
 import type { Agent, Property, PropertyCategory } from "@/types/property";
-import { CATEGORY_LABELS } from "@/types/property";
-import { getCardHeadlinePrice, getCardSpecs, buildWhatsAppLink } from "@/lib/propertyPresentation";
+import { CATEGORY_LABELS, TAG_LABELS } from "@/types/property";
+import { getCardHeadlinePrice, getCardSpecs, buildWhatsAppLink, sanitizeForDisplay } from "@/lib/propertyPresentation";
 import { DEFAULT_FILTERS, computeFacets, filterProperties, sortProperties, isDefaultFilters } from "@/lib/catalog";
+import { CATEGORY_FILTER_EVENT } from "./Indicators";
 import type { CatalogFilters } from "@/lib/catalog";
 
 const agents = companyData.agents as Agent[];
@@ -75,6 +76,17 @@ export default function Properties() {
     hydratedFromUrl.current = true;
   }, []);
 
+  // A faixa de categorias (Indicators) dispara esse evento ao clicar num ícone,
+  // já com o grid montado — não dá pra depender só da URL no mount.
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const category = (e as CustomEvent<PropertyCategory>).detail;
+      setFilters((prev) => ({ ...prev, category }));
+    };
+    window.addEventListener(CATEGORY_FILTER_EVENT, handler);
+    return () => window.removeEventListener(CATEGORY_FILTER_EVENT, handler);
+  }, []);
+
   // Mantém a URL sincronizada com os filtros ativos (sem navegação/reload).
   useEffect(() => {
     if (!hydratedFromUrl.current) return;
@@ -106,10 +118,10 @@ export default function Properties() {
       <div className="container">
         <RevealOnScroll>
           <div className={styles.header}>
-            <span className={styles.tagline}>Nossos Empreendimentos</span>
-            <h2 className="title-premium-center">Portfólio Exclusivo</h2>
+            <span className={styles.tagline}>Nosso Portfólio</span>
+            <h2 className="title-premium-center">Encontre o Imóvel Certo</h2>
             <p className={styles.intro}>
-              Selecione uma categoria abaixo para explorar oportunidades únicas de investimento e moradia de alto padrão.
+              Casas, apartamentos, lotes, chácaras e imóveis comerciais — filtre por categoria e encontre a oportunidade certa para você.
             </p>
           </div>
         </RevealOnScroll>
@@ -157,6 +169,7 @@ export default function Properties() {
                     </div>
 
                     {prop.featured && <div className={styles.featuredBadge}>Destaque</div>}
+                    {prop.tag && <div className={styles.tagBadge}>{TAG_LABELS[prop.tag]}</div>}
 
                     <div className={styles.categoryBadge}>{CATEGORY_LABELS[prop.category]}</div>
                   </div>
@@ -167,7 +180,7 @@ export default function Properties() {
                       <MapPin size={12} style={{ display: "inline", verticalAlign: "-1px", marginRight: "0.3rem" }} />
                       {prop.city}
                     </p>
-                    <p className={styles.cardDescription}>{prop.description}</p>
+                    <p className={styles.cardDescription}>{sanitizeForDisplay(prop.description)}</p>
 
                     {/* Price and Specs */}
                     <div className={styles.cardSpecsWrapper}>

@@ -1,6 +1,6 @@
 {
-  "name": "J&B Corretores",
-  "about": "Excelência em corretagem imobiliária, conectando pessoas aos melhores negócios com confiança, transparência e profissionalismo.",
+  "name": "J&B Consultores Imobiliários",
+  "about": "Excelência em consultoria imobiliária, conectando pessoas aos melhores negócios com confiança, transparência e profissionalismo.",
   "address": "Goiânia, GO",
   "email": "jbconsultoriaimoveis@gmail.com",
   "agents": [
@@ -8,13 +8,15 @@
       "name": "Jonathan Frutuoso",
       "creci": "29.147",
       "phone": "(62) 9 9636-7042",
-      "whatsapp": "62996367042"
+      "whatsapp": "62996367042",
+      "photo": "/images/agents/jonathan.jpg"
     },
     {
       "name": "Bárbara Rangel",
       "creci": "29.148",
       "phone": "(62) 9 9607-1448",
-      "whatsapp": "62996071448"
+      "whatsapp": "62996071448",
+      "photo": "/images/agents/barbara.jpg"
     }
   ],
   "values": [
@@ -42,7 +44,7 @@
   "diferenciais": [
     {
       "title": "Atendimento Personalizado",
-      "description": "Corretagem exclusiva, desenhada para entender profundamente suas necessidades e superar suas expectativas.",
+      "description": "Consultoria próxima e dedicada, feita para entender profundamente suas necessidades e superar suas expectativas.",
       "icon": "UserCheck"
     },
     {

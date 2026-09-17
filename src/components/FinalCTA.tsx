@@ -11,7 +11,7 @@ export default function FinalCTA() {
 
   const steps = [
     { num: "01", title: "Fale Conosco", desc: "Entre em contato via WhatsApp" },
-    { num: "02", title: "Agenda Privativa", desc: "Corretagem exclusiva e sigilosa" },
+    { num: "02", title: "Atendimento Dedicado", desc: "Consultoria personalizada, no seu ritmo" },
     { num: "03", title: "Imóvel Ideal", desc: "Fechamento com segurança" },
   ];
 
@@ -23,9 +23,9 @@ export default function FinalCTA() {
           <div className={styles.glassPanel}>
             
             <div className={styles.content}>
-              <h2 className={styles.title}>Agende uma Corretagem Privativa</h2>
+              <h2 className={styles.title}>Fale com um Consultor J&amp;B</h2>
               <p className={styles.description}>
-                Estamos prontos para ouvir suas necessidades e planejar a aquisição do seu imóvel ideal com segurança e privacidade. Fale diretamente com o corretor de sua escolha.
+                Estamos prontos para ouvir sua necessidade e ajudar a encontrar o imóvel certo, com segurança e clareza em cada etapa. Fale diretamente com o consultor de sua escolha.
               </p>
 
               {/* Timeline Steps */}
@@ -50,7 +50,7 @@ export default function FinalCTA() {
               <div className={styles.agentCard}>
                 <div className={styles.agentHeader}>
                   <div className={styles.avatarPlaceholder}>
-                    <Image src="/images/agents/jonathan.jpg" alt={jonathan.name} fill style={{ objectFit: "cover" }} sizes="50px" />
+                    <Image src="/images/agents/jonathan-contato.jpg" alt={jonathan.name} fill style={{ objectFit: "cover" }} sizes="50px" />
                   </div>
                   <div>
                     <h3 className={styles.agentName}>{jonathan.name}</h3>
@@ -58,7 +58,7 @@ export default function FinalCTA() {
                   </div>
                 </div>
                 <a 
-                  href={`https://wa.me/${jonathan.whatsapp}?text=Olá,%20Jonathan.%20Gostaria%20de%20agendar%20um%20atendimento%20imobiliária.`}
+                  href={`https://wa.me/${jonathan.whatsapp}?text=Olá,%20Jonathan.%20Gostaria%20de%20agendar%20um%20atendimento.`}
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="btn-primary"
@@ -73,7 +73,7 @@ export default function FinalCTA() {
               <div className={styles.agentCard}>
                 <div className={styles.agentHeader}>
                   <div className={styles.avatarPlaceholder}>
-                    <Image src="/images/agents/barbara.jpg" alt={barbara.name} fill style={{ objectFit: "cover" }} sizes="50px" />
+                    <Image src="/images/agents/barbara-contato.jpg" alt={barbara.name} fill style={{ objectFit: "cover" }} sizes="50px" />
                   </div>
                   <div>
                     <h3 className={styles.agentName}>{barbara.name}</h3>
@@ -81,7 +81,7 @@ export default function FinalCTA() {
                   </div>
                 </div>
                 <a 
-                  href={`https://wa.me/${barbara.whatsapp}?text=Olá,%20Bárbara.%20Gostaria%20de%20agendar%20um%20atendimento%20imobiliária.`}
+                  href={`https://wa.me/${barbara.whatsapp}?text=Olá,%20Bárbara.%20Gostaria%20de%20agendar%20um%20atendimento.`}
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="btn-primary"

@@ -3,7 +3,7 @@
 import { ArrowLeft } from "lucide-react";
 import { CATEGORY_ICONS, CATEGORY_LABELS, type PropertyCategory } from "@/types/property";
 
-const CATEGORIES: PropertyCategory[] = ["loteamento", "casa", "chacara", "apartamento"];
+const CATEGORIES: PropertyCategory[] = ["loteamento", "casa", "chacara", "apartamento", "comercial"];
 
 export function CategoryPicker({ onSelect, onCancel }: { onSelect: (category: PropertyCategory) => void; onCancel: () => void }) {
   return (

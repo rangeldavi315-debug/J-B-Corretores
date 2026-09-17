@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { Eye, EyeOff, GripVertical, MapPin, Star, X } from "lucide-react";
 import type { Agent, Property } from "@/types/property";
-import { STATUS_LABELS } from "@/types/property";
+import { STATUS_LABELS, TAG_LABELS } from "@/types/property";
 import { slugify } from "@/lib/slugify";
 import { isValidGoogleMapsUrl } from "@/lib/propertyPresentation";
 import { PropertyLocationSection } from "@/components/property-templates/shared";
@@ -18,6 +18,7 @@ import { LotForm } from "./forms/LotForm";
 import { HouseForm } from "./forms/HouseForm";
 import { FarmForm } from "./forms/FarmForm";
 import { ApartmentForm } from "./forms/ApartmentForm";
+import { CommercialForm } from "./forms/CommercialForm";
 
 const agents = companyData.agents as Agent[];
 
@@ -97,12 +98,18 @@ export function PropertyEditor({
           <div style={{ marginBottom: "1rem" }}>
             <TextField label="Título *" value={draft.title} onChange={(v) => setBase("title", v)} placeholder="Ex: Residencial Vista Verde" />
           </div>
-          <FieldGrid columns={2}>
+          <FieldGrid columns={3}>
             <SelectField
               label="Status"
               value={draft.status}
               onChange={(v) => setBase("status", v as Property["status"])}
               options={Object.entries(STATUS_LABELS).map(([value, label]) => ({ value, label }))}
+            />
+            <SelectField
+              label="Selo no card"
+              value={draft.tag || ""}
+              onChange={(v) => setBase("tag", (v || undefined) as Property["tag"])}
+              options={[{ value: "", label: "Nenhum" }, ...Object.entries(TAG_LABELS).map(([value, label]) => ({ value, label }))]}
             />
             <div>
               <label style={labelStyle}>Destaque</label>
@@ -266,6 +273,7 @@ export function PropertyEditor({
         {draft.category === "casa" && <HouseForm data={draft.data} onChange={(data) => setDraft({ ...draft, data })} />}
         {draft.category === "chacara" && <FarmForm data={draft.data} onChange={(data) => setDraft({ ...draft, data })} />}
         {draft.category === "apartamento" && <ApartmentForm data={draft.data} onChange={(data) => setDraft({ ...draft, data })} />}
+        {draft.category === "comercial" && <CommercialForm data={draft.data} onChange={(data) => setDraft({ ...draft, data })} />}
 
         <Section title="Atendimento">
           <FieldGrid columns={2}>

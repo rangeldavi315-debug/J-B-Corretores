@@ -18,7 +18,11 @@
 .imageWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/5;
+  /* Proporção calculada pra, combinada com object-position:100% no <Image>,
+     enquadrar só os dois corretores da foto e recortar fora o texto/logo
+     que já vem impresso na arte (a foto é uma peça de divulgação, não um
+     retrato neutro) — ver AboutUs.tsx. */
+  aspect-ratio: 784 / 1254;
   max-width: 500px;
   margin: 0 auto;
 }

@@ -57,52 +57,13 @@ export default function Header() {
           {/* Logo */}
           <div className={styles.logoContainer} onClick={() => scrollToSection("home")}>
             <Image
-              src="/logo.png"
-              alt={companyData.name}
-              width={68}
-              height={68}
-              className={styles.logo}
+              src="/brand/isotipo.png"
+              alt="J&B Consultores Imobiliários"
+              width={100}
+              height={100}
+              className={styles.brandMonogram}
               priority
             />
-            <svg
-              viewBox="70 100 460 240"
-              className={styles.brandSvg}
-              role="img"
-              aria-label="J&amp;B Corretores"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id="headerGold" gradientUnits="userSpaceOnUse" x1="300" y1="100" x2="300" y2="340">
-                  <stop offset="0%" stopColor="#FDEAA8" />
-                  <stop offset="25%" stopColor="#D4AF37" />
-                  <stop offset="50%" stopColor="#AA771C" />
-                  <stop offset="60%" stopColor="#8A5A19" />
-                  <stop offset="75%" stopColor="#D4AF37" />
-                  <stop offset="100%" stopColor="#FDEAA8" />
-                </linearGradient>
-                <filter id="headerBevel3d" x="-30%" y="-30%" width="160%" height="160%">
-                  <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur" />
-                  <feSpecularLighting in="blur" surfaceScale="3" specularConstant="1.2" specularExponent="30" lightingColor="#FFFFFF" result="specOut">
-                    <fePointLight x="150" y="-50" z="200" />
-                  </feSpecularLighting>
-                  <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut" />
-                  <feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="beveled" />
-                  <feDropShadow in="beveled" dx="0" dy="3" stdDeviation="2.5" floodColor="#000000" floodOpacity="0.85" />
-                </filter>
-              </defs>
-              <g filter="url(#headerBevel3d)" fill="url(#headerGold)">
-                <text x="300" y="240" textAnchor="middle" fontFamily="var(--font-display), serif" fontSize="180" fontWeight="500" letterSpacing="-0.02em">
-                  J&amp;B
-                </text>
-                <rect x="150" y="275" width="300" height="2" />
-                <polygon points="300,270 306,276 300,282 294,276" />
-                <path d="M 285 276 Q 275 265 265 276 Q 275 287 285 276" fill="none" stroke="url(#headerGold)" strokeWidth="2" />
-                <path d="M 315 276 Q 325 265 335 276 Q 325 287 315 276" fill="none" stroke="url(#headerGold)" strokeWidth="2" />
-                <text x="300" y="325" textAnchor="middle" fontFamily="var(--font-display), serif" fontSize="36" fontWeight="400" letterSpacing="0.4em">
-                  CORRETORES
-                </text>
-              </g>
-            </svg>
           </div>
 
           {/* Desktop Nav */}

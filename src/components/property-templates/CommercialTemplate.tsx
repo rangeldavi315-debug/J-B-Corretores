@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { MapPin, Ruler, Bed, Bath, Car, Home, Zap, Droplet, Phone } from "lucide-react";
-import type { Agent, FarmProperty } from "@/types/property";
+import { MapPin, Maximize2, Bath, Car, Layers, Phone } from "lucide-react";
+import type { Agent, CommercialProperty } from "@/types/property";
 import { CATEGORY_LABELS } from "@/types/property";
-import { formatArea, formatBRL, formatNumber, sanitizeForDisplay } from "@/lib/propertyPresentation";
+import { formatBRL, formatNumber, sanitizeForDisplay } from "@/lib/propertyPresentation";
 import {
   PropertyTopNav,
   PremiumGallery,
@@ -17,32 +17,26 @@ import {
 } from "./shared";
 import { ImageCarousel } from "./ImageCarousel";
 import sharedStyles from "./shared.module.css";
-import styles from "./FarmTemplate.module.css";
+import styles from "./ApartmentTemplate.module.css";
 
 interface Props {
-  property: FarmProperty;
+  property: CommercialProperty;
   agent: Agent;
   whatsappLink: string;
 }
 
-const CTA_LABEL = "Quero saber as condições";
+const CTA_LABEL = "Quero saber mais";
 
-export default function FarmTemplate({ property, agent, whatsappLink }: Props) {
+export default function CommercialTemplate({ property, agent, whatsappLink }: Props) {
   const { data } = property;
   const galleryImages = [property.coverImage, ...property.images].filter(Boolean);
 
-  const hasHouseSpecs =
-    data.hasHouse &&
-    (data.builtArea != null || data.bedrooms != null || data.suites != null || data.bathrooms != null || data.garageSpots != null);
+  const hasSpecs = data.area != null || data.bathrooms != null || data.garageSpots != null || data.floor != null;
 
-  const leisureTags = [
-    ...(data.hasPool ? ["Piscina"] : []),
-    ...(data.hasBbqArea ? ["Churrasqueira"] : []),
-    ...(data.hasGourmetArea ? ["Área gourmet"] : []),
-    ...data.propertyFeatures,
+  const structureTags = [
+    ...(data.hasElevator ? ["Elevador"] : []),
+    ...(data.hasSecurity ? ["Segurança 24h"] : []),
   ];
-
-  const hasStructureInfo = !!data.energyType || !!data.waterSource || !!data.access;
 
   return (
     <div className={sharedStyles.page}>
@@ -55,7 +49,7 @@ export default function FarmTemplate({ property, agent, whatsappLink }: Props) {
         <div className={styles.heroContent}>
           <div className={styles.heroInner}>
             <span className={styles.heroLabel}>
-              {CATEGORY_LABELS[property.category]} em {property.city}
+              {data.businessType || CATEGORY_LABELS[property.category]} em {property.city}
               {property.featured ? " · ★ Destaque" : ""}
             </span>
             <h1 className={styles.heroTitle}>{property.title}</h1>
@@ -65,10 +59,10 @@ export default function FarmTemplate({ property, agent, whatsappLink }: Props) {
                 <MapPin size={14} style={{ color: "#d4af37" }} /> {property.neighborhood ? `${property.neighborhood}, ` : ""}
                 {property.city}
               </span>
-              {data.totalArea != null && (
+              {data.area != null && (
                 <span className={styles.heroInfoItem}>
-                  <Ruler size={14} style={{ color: "#d4af37" }} />
-                  {formatArea(data.totalArea, data.areaUnit)}
+                  <Maximize2 size={14} style={{ color: "#d4af37" }} />
+                  {formatNumber(data.area)} m²
                 </span>
               )}
             </div>
@@ -87,6 +81,15 @@ export default function FarmTemplate({ property, agent, whatsappLink }: Props) {
             <div className={styles.offerMain}>
               <p className={styles.offerEyebrow}>{data.priceFrom ? "A partir de" : "Valor"}</p>
               <p className={styles.offerPrice}>{formatBRL(data.price)}</p>
+
+              {data.condominiumFee != null && (
+                <div className={styles.offerBreakdown}>
+                  <span>
+                    Condomínio: <strong>{formatBRL(data.condominiumFee)}/mês</strong>
+                  </span>
+                </div>
+              )}
+
               {data.conditions && <p className={styles.offerConditions}>{data.conditions}</p>}
             </div>
 
@@ -96,24 +99,44 @@ export default function FarmTemplate({ property, agent, whatsappLink }: Props) {
       )}
 
       <div className={sharedStyles.section}>
-        {/* ── ÁREA ───────────────────────────────────────────────────── */}
-        {data.totalArea != null && (
+        {/* ── CARACTERÍSTICAS ────────────────────────────────────────── */}
+        {hasSpecs && (
           <div style={{ marginBottom: "3rem" }}>
-            <SectionHeading eyebrow="Dimensões" title="Área" />
+            <SectionHeading eyebrow="Especificações" title="Características" />
             <div className={sharedStyles.specChips}>
-              <div className={sharedStyles.specChip}>
-                <Ruler size={15} style={{ color: "#d4af37" }} />
-                <div>
-                  <p className={sharedStyles.specChipLabel}>Área total</p>
-                  <p className={sharedStyles.specChipValue}>{formatArea(data.totalArea, data.areaUnit)}</p>
-                </div>
-              </div>
-              {hasHouseSpecs && data.builtArea != null && (
+              {data.area != null && (
                 <div className={sharedStyles.specChip}>
-                  <Home size={15} style={{ color: "#d4af37" }} />
+                  <Maximize2 size={15} style={{ color: "#d4af37" }} />
                   <div>
-                    <p className={sharedStyles.specChipLabel}>Área construída</p>
-                    <p className={sharedStyles.specChipValue}>{formatNumber(data.builtArea)} m²</p>
+                    <p className={sharedStyles.specChipLabel}>Área</p>
+                    <p className={sharedStyles.specChipValue}>{formatNumber(data.area)} m²</p>
+                  </div>
+                </div>
+              )}
+              {data.bathrooms != null && (
+                <div className={sharedStyles.specChip}>
+                  <Bath size={15} style={{ color: "#d4af37" }} />
+                  <div>
+                    <p className={sharedStyles.specChipLabel}>Banheiros</p>
+                    <p className={sharedStyles.specChipValue}>{data.bathrooms}</p>
+                  </div>
+                </div>
+              )}
+              {data.garageSpots != null && (
+                <div className={sharedStyles.specChip}>
+                  <Car size={15} style={{ color: "#d4af37" }} />
+                  <div>
+                    <p className={sharedStyles.specChipLabel}>Vagas</p>
+                    <p className={sharedStyles.specChipValue}>{data.garageSpots}</p>
+                  </div>
+                </div>
+              )}
+              {data.floor != null && (
+                <div className={sharedStyles.specChip}>
+                  <Layers size={15} style={{ color: "#d4af37" }} />
+                  <div>
+                    <p className={sharedStyles.specChipLabel}>Andar</p>
+                    <p className={sharedStyles.specChipValue}>{data.floor}º</p>
                   </div>
                 </div>
               )}
@@ -122,81 +145,10 @@ export default function FarmTemplate({ property, agent, whatsappLink }: Props) {
         )}
 
         {/* ── ESTRUTURA ──────────────────────────────────────────────── */}
-        {(hasHouseSpecs || hasStructureInfo) && (
+        {structureTags.length > 0 && (
           <div style={{ marginBottom: "3rem" }}>
-            <SectionHeading eyebrow={data.hasHouse ? "Casa sede" : undefined} title="Estrutura" />
-            {hasHouseSpecs && (
-              <div className={sharedStyles.specChips} style={{ marginBottom: hasStructureInfo ? "1rem" : 0 }}>
-                {data.bedrooms != null && (
-                  <div className={sharedStyles.specChip}>
-                    <Bed size={15} style={{ color: "#d4af37" }} />
-                    <div>
-                      <p className={sharedStyles.specChipLabel}>Quartos{data.suites != null ? ` (${data.suites} suítes)` : ""}</p>
-                      <p className={sharedStyles.specChipValue}>{data.bedrooms}</p>
-                    </div>
-                  </div>
-                )}
-                {data.bathrooms != null && (
-                  <div className={sharedStyles.specChip}>
-                    <Bath size={15} style={{ color: "#d4af37" }} />
-                    <div>
-                      <p className={sharedStyles.specChipLabel}>Banheiros</p>
-                      <p className={sharedStyles.specChipValue}>{data.bathrooms}</p>
-                    </div>
-                  </div>
-                )}
-                {data.garageSpots != null && (
-                  <div className={sharedStyles.specChip}>
-                    <Car size={15} style={{ color: "#d4af37" }} />
-                    <div>
-                      <p className={sharedStyles.specChipLabel}>Garagem</p>
-                      <p className={sharedStyles.specChipValue}>
-                        {data.garageSpots} {data.garageSpots === 1 ? "vaga" : "vagas"}
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-            {hasStructureInfo && (
-              <div className={sharedStyles.specChips}>
-                {data.energyType && (
-                  <div className={sharedStyles.specChip}>
-                    <Zap size={15} style={{ color: "#d4af37" }} />
-                    <div>
-                      <p className={sharedStyles.specChipLabel}>Energia</p>
-                      <p className={sharedStyles.specChipValue}>{data.energyType}</p>
-                    </div>
-                  </div>
-                )}
-                {data.waterSource && (
-                  <div className={sharedStyles.specChip}>
-                    <Droplet size={15} style={{ color: "#d4af37" }} />
-                    <div>
-                      <p className={sharedStyles.specChipLabel}>Água</p>
-                      <p className={sharedStyles.specChipValue}>{data.waterSource}</p>
-                    </div>
-                  </div>
-                )}
-                {data.access && (
-                  <div className={sharedStyles.specChip}>
-                    <MapPin size={15} style={{ color: "#d4af37" }} />
-                    <div>
-                      <p className={sharedStyles.specChipLabel}>Acesso</p>
-                      <p className={sharedStyles.specChipValue}>{data.access}</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* ── LAZER ──────────────────────────────────────────────────── */}
-        {leisureTags.length > 0 && (
-          <div style={{ marginBottom: "3rem" }}>
-            <SectionHeading eyebrow="Viva bem" title="Lazer" />
-            <TagList items={leisureTags} />
+            <SectionHeading eyebrow="Infraestrutura" title="Estrutura" />
+            <TagList items={structureTags} />
           </div>
         )}
 
@@ -246,7 +198,7 @@ export default function FarmTemplate({ property, agent, whatsappLink }: Props) {
         </div>
 
         {/* ── DESCRIÇÃO ─────────────────────────────────────────────── */}
-        <SectionHeading eyebrow="Sobre a propriedade" title="Descrição" />
+        <SectionHeading eyebrow="Sobre o imóvel" title="Descrição" />
         <p className={sharedStyles.description}>{sanitizeForDisplay(property.description)}</p>
       </div>
 

@@ -2,7 +2,7 @@
 // Cada categoria tem seu próprio conjunto de campos (união discriminada por `category`),
 // evitando um cadastro genérico com dezenas de campos opcionais sem sentido entre si.
 
-export type PropertyCategory = "loteamento" | "casa" | "chacara" | "apartamento";
+export type PropertyCategory = "loteamento" | "casa" | "chacara" | "apartamento" | "comercial";
 
 export type PropertyStatus = "draft" | "published" | "reserved" | "sold";
 
@@ -11,6 +11,7 @@ export const CATEGORY_LABELS: Record<PropertyCategory, string> = {
   casa: "Casa",
   chacara: "Chácara",
   apartamento: "Apartamento",
+  comercial: "Imóvel Comercial",
 };
 
 export const CATEGORY_ICONS: Record<PropertyCategory, string> = {
@@ -18,6 +19,7 @@ export const CATEGORY_ICONS: Record<PropertyCategory, string> = {
   casa: "🏠",
   chacara: "🌳",
   apartamento: "🏢",
+  comercial: "🏬",
 };
 
 export const STATUS_LABELS: Record<PropertyStatus, string> = {
@@ -25,6 +27,15 @@ export const STATUS_LABELS: Record<PropertyStatus, string> = {
   published: "Publicado",
   reserved: "Reservado",
   sold: "Vendido",
+};
+
+/** Selo comercial opcional exibido no card — independente do status interno (rascunho/publicado/etc). */
+export type PropertyTag = "venda" | "lancamento" | "oportunidade";
+
+export const TAG_LABELS: Record<PropertyTag, string> = {
+  venda: "Venda",
+  lancamento: "Lançamento",
+  oportunidade: "Oportunidade",
 };
 
 export interface SEOData {
@@ -57,6 +68,8 @@ export interface PropertyBase {
   heroImageMobile?: string;
   images: string[];
   featured: boolean;
+  /** Selo comercial exibido no card (Venda/Lançamento/Oportunidade) — opcional, não confundir com `status`. */
+  tag?: PropertyTag;
   order: number;
   whatsappAgentId: string;
   seo?: SEOData;
@@ -155,6 +168,22 @@ export interface ApartmentData {
   differentials: string[];
 }
 
+export interface CommercialData {
+  /** Tipo de uso comercial — texto livre porque "comercial" cobre loja, sala, galpão, prédio etc. */
+  businessType?: string;
+  area?: number;
+  bathrooms?: number;
+  garageSpots?: number;
+  floor?: number;
+  hasElevator?: boolean;
+  condominiumFee?: number;
+  hasSecurity?: boolean;
+  price?: number;
+  priceFrom?: boolean;
+  conditions?: string;
+  differentials: string[];
+}
+
 export interface LotProperty extends PropertyBase {
   category: "loteamento";
   data: LotData;
@@ -175,23 +204,30 @@ export interface ApartmentProperty extends PropertyBase {
   data: ApartmentData;
 }
 
-export type Property = LotProperty | HouseProperty | FarmProperty | ApartmentProperty;
+export interface CommercialProperty extends PropertyBase {
+  category: "comercial";
+  data: CommercialData;
+}
+
+export type Property = LotProperty | HouseProperty | FarmProperty | ApartmentProperty | CommercialProperty;
 
 export interface Agent {
   name: string;
   creci: string;
   phone: string;
   whatsapp: string;
+  photo?: string;
 }
 
 export function emptyDataForCategory(category: "loteamento"): LotData;
 export function emptyDataForCategory(category: "casa"): HouseData;
 export function emptyDataForCategory(category: "chacara"): FarmData;
 export function emptyDataForCategory(category: "apartamento"): ApartmentData;
-export function emptyDataForCategory(category: PropertyCategory): LotData | HouseData | FarmData | ApartmentData;
+export function emptyDataForCategory(category: "comercial"): CommercialData;
+export function emptyDataForCategory(category: PropertyCategory): LotData | HouseData | FarmData | ApartmentData | CommercialData;
 export function emptyDataForCategory(
   category: PropertyCategory
-): LotData | HouseData | FarmData | ApartmentData {
+): LotData | HouseData | FarmData | ApartmentData | CommercialData {
   switch (category) {
     case "loteamento":
       return { lotTypes: [], commercial: {}, infrastructure: [], differentials: [] };
@@ -200,6 +236,8 @@ export function emptyDataForCategory(
     case "chacara":
       return { propertyFeatures: [], differentials: [] };
     case "apartamento":
+      return { differentials: [] };
+    case "comercial":
       return { differentials: [] };
   }
 }
@@ -215,5 +253,7 @@ export function createEmptyProperty(category: PropertyCategory, base: Omit<Prope
       return { ...base, category, data: emptyDataForCategory("chacara") };
     case "apartamento":
       return { ...base, category, data: emptyDataForCategory("apartamento") };
+    case "comercial":
+      return { ...base, category, data: emptyDataForCategory("comercial") };
   }
 }

@@ -19,10 +19,11 @@ export default function AboutUs() {
             <div className={styles.imageWrapper}>
               <div className={styles.imageFrame} />
               <Image
-                src="/images/agents.jpg"
-                alt="Corretores JB Corretagem"
+                src="/images/agentes-jb.jpg"
+                alt="Jonathan Frutuoso e Bárbara Rangel, consultores da J&B Consultores Imobiliários"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectPosition: "100% center" }}
                 className={styles.image}
               />
               <div className={styles.badge}>
@@ -42,7 +43,7 @@ export default function AboutUs() {
             </p>
 
             <div className={styles.agentsInfo}>
-              <p>Conheça nossos corretores especialistas:</p>
+              <p>Conheça nossos consultores especialistas:</p>
               <ul>
                 {companyData.agents.map((agent) => (
                   <li key={agent.creci}>
@@ -57,7 +58,7 @@ export default function AboutUs() {
             <div className={styles.valuesList}>
               <div className={styles.valueItem}>
                 <Check size={20} className="gold-highlight" />
-                <span>Atendimento Private e Exclusivo</span>
+                <span>Atendimento Próximo e Personalizado</span>
               </div>
               <div className={styles.valueItem}>
                 <Check size={20} className="gold-highlight" />
@@ -70,7 +71,7 @@ export default function AboutUs() {
             </div>
 
             <button onClick={scrollToFinalCta} className="btn-secondary" style={{ marginTop: "2rem" }}>
-              Conheça nossa corretagem
+              Conheça nossa consultoria
             </button>
           </RevealOnScroll>
         </div>

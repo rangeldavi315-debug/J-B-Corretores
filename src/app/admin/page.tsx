@@ -25,6 +25,7 @@ const CATEGORY_COLORS: Record<PropertyCategory, string> = {
   casa: "#34d399",
   chacara: "#fb923c",
   apartamento: "#a78bfa",
+  comercial: "#f472b6",
 };
 
 const STATUS_COLORS: Record<Property["status"], { bg: string; text: string }> = {
@@ -231,12 +232,12 @@ export default function AdminPanel() {
         <aside style={{ width: "230px", background: "#0d0d0d", borderRight: "1px solid rgba(255,255,255,0.06)", display: "flex", flexDirection: "column", flexShrink: 0 }}>
           <div style={{ padding: "1.25rem", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-              <div style={{ width: "44px", height: "44px", borderRadius: "50%", overflow: "hidden", border: "2px solid rgba(212, 175, 55,0.4)", flexShrink: 0 }}>
-                <Image src="/logo.png" alt="JB" width={44} height={44} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+              <div style={{ width: "44px", height: "44px", padding: "6px", borderRadius: "10px", background: "#0B0B0B", border: "1px solid rgba(212, 175, 55,0.4)", flexShrink: 0 }}>
+                <Image src="/brand/isotipo.png" alt="JB" width={100} height={100} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
               </div>
               <div>
                 <p style={{ fontSize: "0.72rem", color: "#D4AF37", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em" }}>Admin CMS</p>
-                <p style={{ fontSize: "0.65rem", color: "#555" }}>J&B Corretores</p>
+                <p style={{ fontSize: "0.65rem", color: "#555" }}>J&B Consultores Imobiliários</p>
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Sora, Poppins, Cinzel } from "next/font/google";
+import { Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
 import seoData from "../../content/seo.json";
 import companyData from "../../content/company.json";
@@ -7,24 +7,21 @@ import socialData from "../../content/social.json";
 import ScrollToTop from "@/components/ScrollToTop";
 import { toJsonLd } from "@/lib/jsonLd";
 
-const sora = Sora({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sora",
-  display: "swap",
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-poppins",
-  display: "swap",
-});
-
-const cinzel = Cinzel({
+// Tipografia da identidade J&B Consultores Imobiliários: Playfair Display para
+// títulos/monograma (inclui itálico — usado no "J" fluido do monograma) e
+// Montserrat para textos/UI.
+const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-cinzel",
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -33,7 +30,7 @@ export const metadata: Metadata = {
   title: seoData.title,
   description: seoData.description,
   keywords: seoData.keywords,
-  authors: [{ name: "J&B Corretores" }],
+  authors: [{ name: "J&B Consultores Imobiliários" }],
   alternates: {
     canonical: "/",
   },
@@ -41,7 +38,7 @@ export const metadata: Metadata = {
     title: seoData.title,
     description: seoData.description,
     url: seoData.siteUrl,
-    siteName: "J&B Corretores",
+    siteName: "J&B Consultores Imobiliários",
     images: [
       {
         url: seoData.ogImage,
@@ -60,7 +57,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#0B0B0B",
   width: "device-width",
   initialScale: 1,
 };
@@ -75,7 +72,7 @@ export default function RootLayout({
   const schemaOrg = {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "RealEstateAgent"],
-    "name": seoData.title,
+    "name": companyData.name,
     "image": new URL(seoData.ogImage, seoData.siteUrl).toString(),
     "description": seoData.description,
     "telephone": primaryAgent.phone,
@@ -92,7 +89,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="pt-BR" className={`${sora.variable} ${poppins.variable} ${cinzel.variable}`}>
+    <html lang="pt-BR" className={`${playfair.variable} ${montserrat.variable}`}>
       <head>
         <script
           type="application/ld+json"

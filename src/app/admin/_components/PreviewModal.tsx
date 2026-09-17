@@ -8,6 +8,7 @@ import LotTemplate from "@/components/property-templates/LotTemplate";
 import HouseTemplate from "@/components/property-templates/HouseTemplate";
 import FarmTemplate from "@/components/property-templates/FarmTemplate";
 import ApartmentTemplate from "@/components/property-templates/ApartmentTemplate";
+import CommercialTemplate from "@/components/property-templates/CommercialTemplate";
 
 const agents = companyData.agents as Agent[];
 
@@ -51,6 +52,7 @@ export function PreviewModal({ property, onClose }: { property: Property; onClos
       {property.category === "casa" && <HouseTemplate property={property} agent={agent} whatsappLink={whatsappLink} />}
       {property.category === "chacara" && <FarmTemplate property={property} agent={agent} whatsappLink={whatsappLink} />}
       {property.category === "apartamento" && <ApartmentTemplate property={property} agent={agent} whatsappLink={whatsappLink} />}
+      {property.category === "comercial" && <CommercialTemplate property={property} agent={agent} whatsappLink={whatsappLink} />}
     </div>
   );
 }

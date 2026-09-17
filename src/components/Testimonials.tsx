@@ -40,6 +40,10 @@ export default function Testimonials() {
 
   const activeTestimonials = testimonialsData.filter(t => t.status === "active");
 
+  // Sem depoimentos reais cadastrados ainda: esconde a seção inteira em vez
+  // de mostrar um vão vazio (e nunca inventa avaliação fictícia pra preencher).
+  if (activeTestimonials.length === 0) return null;
+
   return (
     <section id="testimonials" className={styles.section}>
       <div className="container">
@@ -47,7 +51,7 @@ export default function Testimonials() {
           <div className={styles.header}>
             <h2 className="title-premium-center">O Que Dizem Nossos Clientes</h2>
             <p className={styles.intro}>
-              A satisfação de quem confia em nossa corretagem é o nosso maior patrimônio.
+              A satisfação de quem confia em nossa consultoria é o nosso maior patrimônio.
             </p>
           </div>
         </RevealOnScroll>

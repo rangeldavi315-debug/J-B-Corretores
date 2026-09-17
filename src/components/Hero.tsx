@@ -2,19 +2,9 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import styles from "./Hero.module.css";
 import { FaKey } from "react-icons/fa";
-import { ImageCarousel } from "./property-templates/ImageCarousel";
-
-/** Fotos do "tour" da Hero — alternam num carrossel automático com crossfade. */
-const HERO_IMAGES = [
-  "/images/hero/hero-01-entrada.jpg",
-  "/images/hero/hero-02-sala.jpg",
-  "/images/hero/hero-03-lounge.jpg",
-  "/images/hero/hero-04-cozinha.jpg",
-  "/images/hero/hero-05-corredor.jpg",
-  "/images/hero/hero-06-quarto.jpg",
-];
 
 export default function Hero() {
   const scrollToProperties = () => {
@@ -33,15 +23,15 @@ export default function Hero() {
 
   return (
     <section id="home" className={styles.hero}>
-      {/* BACKGROUND LAYER — carrossel automático com crossfade entre as 6 fotos */}
+      {/* BACKGROUND LAYER — fachada noturna, única foto cinematográfica */}
       <div className={styles.heroBg}>
-        <ImageCarousel
-          images={HERO_IMAGES}
-          alt="J&B Corretores — apartamento de alto padrão"
-          intervalMs={4500}
+        <Image
+          src="/images/hero/hero-fachada-noturna.jpg"
+          alt="Casa moderna com piscina ao entardecer — J&B Consultores Imobiliários"
+          fill
           priority
-          showArrows={false}
-          objectPosition="center right"
+          sizes="100vw"
+          style={{ objectFit: "cover", objectPosition: "center right" }}
         />
       </div>
       <div className={styles.heroOverlay} />
@@ -57,108 +47,29 @@ export default function Hero() {
             transition={{ duration: 1, ease: "easeOut" }}
             className={styles.leftCol}
           >
-            {/* PURE HTML/SVG 3D LOGO COMPOSITION (NO PNG/JPG) */}
             <div className={styles.cssLogo}>
               <div className={styles.logoWrap}>
-              <div className={styles.logoGlow} aria-hidden="true" />
-              <svg
-                viewBox="0 0 600 350"
-                className={styles.logoSvg}
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  {/* Rich Gold Gradient — userSpaceOnUse: uma única "chapa" de
-                      dourado fixa no viewBox, para que o texto grande, os
-                      traços finos e o CORRETORES pequeno leiam o mesmo
-                      gradiente em vez de cada forma calcular o seu próprio
-                      (o que deixava os elementos com tons de ouro diferentes) */}
-                  <linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="300" y1="20" x2="300" y2="330">
-                    <stop offset="0%" stopColor="#FDEAA8" />
-                    <stop offset="25%" stopColor="#D4AF37" />
-                    <stop offset="50%" stopColor="#AA771C" />
-                    <stop offset="60%" stopColor="#8A5A19" />
-                    <stop offset="75%" stopColor="#D4AF37" />
-                    <stop offset="100%" stopColor="#FDEAA8" />
-                  </linearGradient>
-
-                  {/* 3D Bevel & Lighting Filter */}
-                  <filter id="bevel3d" x="-20%" y="-20%" width="140%" height="140%">
-                    {/* Inner Shadow / Bevel */}
-                    <feGaussianBlur in="SourceAlpha" stdDeviation="1.5" result="blur" />
-                    <feSpecularLighting in="blur" surfaceScale="3" specularConstant="1.2" specularExponent="30" lightingColor="#FFFFFF" result="specOut">
-                      <fePointLight x="150" y="-50" z="200" />
-                    </feSpecularLighting>
-                    <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specOut" />
-                    <feComposite in="SourceGraphic" in2="specOut" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="beveled" />
-                    
-                    {/* Deep Drop Shadow for depth */}
-                    <feDropShadow in="beveled" dx="0" dy="10" stdDeviation="8" floodColor="#000000" floodOpacity="0.9" result="shadow" />
-                    <feDropShadow in="shadow" dx="0" dy="4" stdDeviation="3" floodColor="#000000" floodOpacity="0.7" />
-                  </filter>
-                </defs>
-
-                {/* LOGO GROUP WITH 3D FILTER */}
-                <g filter="url(#bevel3d)" fill="url(#gold)">
-                  
-                  {/* ROOF ORNAMENT */}
-                  <path d="M 300 20 L 120 120 H 150 L 300 40 L 450 120 H 480 Z" />
-                  <path d="M 430 70 V 120 H 460 V 55 Z" />
-                  {/* Roof Window */}
-                  <rect x="282" y="75" width="15" height="15" />
-                  <rect x="303" y="75" width="15" height="15" />
-                  <rect x="282" y="96" width="15" height="15" />
-                  <rect x="303" y="96" width="15" height="15" />
-
-                  {/* Roof Arabesques (Stylized Curves) */}
-                  <path d="M 300 50 Q 260 90 230 70 Q 250 50 280 80 Q 290 90 300 75" fill="none" stroke="url(#gold)" strokeWidth="6" strokeLinecap="round" />
-                  <path d="M 300 50 Q 340 90 370 70 Q 350 50 320 80 Q 310 90 300 75" fill="none" stroke="url(#gold)" strokeWidth="6" strokeLinecap="round" />
-                  
-                  {/* J&B MASSIVE TEXT */}
-                  <text 
-                    x="300" y="240" 
-                    textAnchor="middle" 
-                    fontFamily="var(--font-display), serif" 
-                    fontSize="180" 
-                    fontWeight="500" 
-                    letterSpacing="-0.02em"
-                  >
-                    J&amp;B
-                  </text>
-
-                  {/* ORNAMENTAL LINE */}
-                  <rect x="150" y="275" width="300" height="2" />
-                  <polygon points="300,270 306,276 300,282 294,276" />
-                  <path d="M 285 276 Q 275 265 265 276 Q 275 287 285 276" fill="none" stroke="url(#gold)" strokeWidth="2" />
-                  <path d="M 315 276 Q 325 265 335 276 Q 325 287 315 276" fill="none" stroke="url(#gold)" strokeWidth="2" />
-
-                  {/* CORRETORES TEXT */}
-                  <text 
-                    x="300" y="325" 
-                    textAnchor="middle" 
-                    fontFamily="var(--font-display), serif" 
-                    fontSize="36" 
-                    fontWeight="400" 
-                    letterSpacing="0.4em"
-                  >
-                    CORRETORES
-                  </text>
-
-                </g>
-              </svg>
+                <Image
+                  src="/brand/isologo.png"
+                  alt="J&B Consultores Imobiliários — Mais que imóveis, realizamos histórias"
+                  width={1536}
+                  height={1024}
+                  priority
+                  className={styles.logoSvg}
+                />
               </div>
             </div>
 
             {/* Headline */}
             <h1 className={styles.headline}>
-              SEU PRÓXIMO IMÓVEL<br />
-              COMEÇA COM UMA<br />
-              <span className={styles.headlineGold}>ESCOLHA INTELIGENTE.</span>
+              O imóvel certo para a sua<br />
+              <span className={styles.headlineGold}>próxima conquista.</span>
             </h1>
 
             {/* Subtitle */}
             <p className={styles.subtitle}>
-              Encontramos oportunidades que combinam com o seu<br />
-              momento, seu projeto e o seu investimento.
+              Consultoria completa, atendimento personalizado e segurança<br />
+              em todas as etapas — em casas, apartamentos, lotes, chácaras e imóveis comerciais.
             </p>
           </motion.div>
 
@@ -175,12 +86,12 @@ export default function Hero() {
               </div>
               
               <h2 className={styles.cardTitle}>
-                O IMÓVEL CERTO.<br />O NEGÓCIO CERTO.
+                Atendimento humano.<br />Do primeiro contato às chaves.
               </h2>
               <p className={styles.cardDescription}>
-                Mais que imóveis, entregamos segurança,<br />
-                confiança e as melhores oportunidades<br />
-                para você realizar.
+                Entendemos sua necessidade e caminhamos<br />
+                com você em cada etapa, com clareza<br />
+                e segurança jurídica.
               </p>
               <button onClick={scrollToProperties} className={styles.cardCta}>
                 <span>VER IMÓVEIS DISPONÍVEIS</span>

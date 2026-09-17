@@ -4,7 +4,7 @@ import Image from "next/image";
 import { MapPin, Maximize2, Bed, Bath, Car, Layers, Phone } from "lucide-react";
 import type { Agent, HouseProperty } from "@/types/property";
 import { CATEGORY_LABELS } from "@/types/property";
-import { formatBRL, formatNumber } from "@/lib/propertyPresentation";
+import { formatBRL, formatNumber, sanitizeForDisplay } from "@/lib/propertyPresentation";
 import {
   PropertyTopNav,
   PremiumGallery,
@@ -211,11 +211,11 @@ export default function HouseTemplate({ property, agent, whatsappLink }: Props) 
           <SectionHeading eyebrow="Atendimento" title="Fale diretamente com quem cuida deste negócio" />
           <div className={styles.agentSection}>
             <div className={styles.agentPhotoWrap}>
-              <Image src="/images/agents.jpg" alt={agent.name} fill style={{ objectFit: "cover" }} sizes="(max-width: 720px) 100vw, 340px" />
+              <Image src={agent.photo || "/images/agents/jonathan.jpg"} alt={agent.name} fill style={{ objectFit: "cover" }} sizes="(max-width: 720px) 100vw, 340px" />
             </div>
             <div>
               <p className={styles.agentName}>{agent.name}</p>
-              <p className={styles.agentRole}>Corretor(a) J&B Corretores — CRECI: {agent.creci}</p>
+              <p className={styles.agentRole}>Consultor(a) J&B — CRECI: {agent.creci}</p>
               <p className={styles.agentText}>
                 Atendimento direto, sem intermediários: você fala com {agent.name.split(" ")[0]} desde a primeira dúvida até a assinatura,
                 com segurança jurídica e transparência em cada etapa.
@@ -231,7 +231,7 @@ export default function HouseTemplate({ property, agent, whatsappLink }: Props) 
 
         {/* ── DESCRIÇÃO ─────────────────────────────────────────────── */}
         <SectionHeading eyebrow="Sobre o imóvel" title="Descrição" />
-        <p className={sharedStyles.description}>{property.description}</p>
+        <p className={sharedStyles.description}>{sanitizeForDisplay(property.description)}</p>
       </div>
 
       <FinalCTABand whatsappLink={whatsappLink} ctaLabel={CTA_LABEL} />

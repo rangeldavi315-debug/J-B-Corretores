@@ -5,7 +5,7 @@
   width: 100%;
   height: 90px;
   z-index: 100;
-  background-color: #000000;
+  background-color: var(--color-background);
   display: flex;
   align-items: center;
   transition: all 0.3s ease;
@@ -46,19 +46,17 @@
   height: 100%;
 }
 
-.logo {
-  object-fit: cover;
-  border-radius: 50%;
-  border: 1px solid rgba(212, 175, 55, 0.5);
+.brandMonogram {
+  display: block;
+  height: clamp(42px, 6.5vw, 58px);
+  width: auto;
   flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
 }
 
-.brandSvg {
-  display: block;
-  height: clamp(38px, 6.5vw, 54px);
-  width: auto;
-  overflow: visible;
-  flex-shrink: 0;
+.logoContainer:hover .brandMonogram {
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
 }
 
 /* ─── Desktop Nav ─── */
@@ -81,8 +79,28 @@
   transition: color 0.3s ease;
 }
 
+.navLink::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--color-secondary);
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
 .navLink:hover {
   color: var(--color-secondary);
+}
+
+.navLink:hover::before {
+  width: 100%;
+  left: 0;
+}
+
+.navActive::before {
+  display: none;
 }
 
 .navActive {

@@ -39,8 +39,10 @@ export function getEffectivePrice(property: Property): number | undefined {
 }
 
 export function getBedrooms(property: Property): number | undefined {
-  if (property.category === "loteamento") return undefined;
-  return property.data.bedrooms;
+  if (property.category === "casa" || property.category === "chacara" || property.category === "apartamento") {
+    return property.data.bedrooms;
+  }
+  return undefined;
 }
 
 function matchesCategory(property: Property, filters: CatalogFilters): boolean {

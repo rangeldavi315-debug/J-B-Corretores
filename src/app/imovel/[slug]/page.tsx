@@ -10,6 +10,7 @@ import LotTemplate from "@/components/property-templates/LotTemplate";
 import HouseTemplate from "@/components/property-templates/HouseTemplate";
 import FarmTemplate from "@/components/property-templates/FarmTemplate";
 import ApartmentTemplate from "@/components/property-templates/ApartmentTemplate";
+import CommercialTemplate from "@/components/property-templates/CommercialTemplate";
 
 const agents = companyData.agents as Agent[];
 
@@ -94,6 +95,18 @@ export default async function PropertyPage({ params }: { params: Promise<{ slug:
       : {}),
   };
 
+  // Ajuda o Google a entender a posição da página na hierarquia do site
+  // (às vezes substitui a URL crua pelo caminho de migalhas no resultado de busca).
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Início", item: seoData.siteUrl },
+      { "@type": "ListItem", position: 2, name: "Imóveis", item: `${seoData.siteUrl}/#properties` },
+      { "@type": "ListItem", position: 3, name: property.title, item: new URL(`/imovel/${property.slug}`, seoData.siteUrl).toString() },
+    ],
+  };
+
   const Template = () => {
     switch (property.category) {
       case "loteamento":
@@ -104,6 +117,8 @@ export default async function PropertyPage({ params }: { params: Promise<{ slug:
         return <FarmTemplate property={property} agent={agent} whatsappLink={whatsappLink} />;
       case "apartamento":
         return <ApartmentTemplate property={property} agent={agent} whatsappLink={whatsappLink} />;
+      case "comercial":
+        return <CommercialTemplate property={property} agent={agent} whatsappLink={whatsappLink} />;
     }
   };
 
@@ -112,6 +127,10 @@ export default async function PropertyPage({ params }: { params: Promise<{ slug:
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: toJsonLd(schema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: toJsonLd(breadcrumbSchema) }}
       />
       <Template />
     </>

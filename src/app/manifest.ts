@@ -4,12 +4,12 @@ import seoData from "../../content/seo.json";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: seoData.title,
-    short_name: companyData.name,
+    name: companyData.name,
+    short_name: "J&B",
     description: seoData.description,
     start_url: "/",
     display: "standalone",
-    background_color: "#000000",
+    background_color: "#0B0B0B",
     theme_color: "#D4AF37",
     lang: "pt-BR",
     icons: [

@@ -17,6 +17,7 @@ const CATEGORY_SEO_SUFFIX: Record<Property["category"], string> = {
   casa: "Casa à venda",
   chacara: "Chácara à venda",
   apartamento: "Apartamento à venda",
+  comercial: "Imóvel comercial à venda",
 };
 
 /** Título de SEO construído a partir de dados reais do cadastro, nunca inventado. */
@@ -33,10 +34,10 @@ export function getSeoTitle(property: Property, companyName: string): string {
 /**
  * Descrições cadastradas usam emoji e **negrito** em markdown para ficarem
  * bonitas no WhatsApp/anúncios — mas isso vaza como texto cru (asteriscos,
- * quebras de linha) em <meta description> e og:description. Nunca publica
- * isso sem sanitizar antes.
+ * quebras de linha) em qualquer lugar que renderize texto puro (cards,
+ * <meta description>, og:description). Nunca exibe isso sem sanitizar antes.
  */
-function sanitizeForMetaText(text: string): string {
+export function sanitizeForDisplay(text: string): string {
   return text
     .replace(/\*\*(.*?)\*\*/g, "$1")
     .replace(/\*(.*?)\*/g, "$1")
@@ -46,8 +47,8 @@ function sanitizeForMetaText(text: string): string {
 }
 
 export function getSeoDescription(property: Property): string {
-  if (property.seo?.description) return sanitizeForMetaText(property.seo.description);
-  const text = sanitizeForMetaText(property.description);
+  if (property.seo?.description) return sanitizeForDisplay(property.seo.description);
+  const text = sanitizeForDisplay(property.description);
   return text.length > 160 ? `${text.slice(0, 157)}...` : text;
 }
 
@@ -103,6 +104,13 @@ export function getCardSpecs(property: Property): string[] {
       const { area, bedrooms, garageSpots } = property.data;
       if (area != null) specs.push(`${formatNumber(area)} m²`);
       if (bedrooms != null) specs.push(`${bedrooms} quarto${bedrooms === 1 ? "" : "s"}`);
+      if (garageSpots != null) specs.push(`${garageSpots} vaga${garageSpots === 1 ? "" : "s"}`);
+      break;
+    }
+    case "comercial": {
+      const { area, garageSpots, businessType } = property.data;
+      if (businessType) specs.push(businessType);
+      if (area != null) specs.push(`${formatNumber(area)} m²`);
       if (garageSpots != null) specs.push(`${garageSpots} vaga${garageSpots === 1 ? "" : "s"}`);
       break;
     }

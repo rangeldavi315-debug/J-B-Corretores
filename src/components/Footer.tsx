@@ -31,19 +31,14 @@ export default function Footer() {
         <div className={styles.grid}>
           {/* Brand Col */}
           <div className={styles.col}>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem" }}>
             <Image
-              src="/logo.png"
+              src="/brand/isotipo.png"
               alt={companyData.name}
-              width={50}
-              height={50}
+              width={100}
+              height={100}
               className={styles.logo}
+              style={{ marginBottom: "1.5rem" }}
             />
-            <div>
-              <p style={{ fontFamily: "var(--font-trajan)", fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>J&B Corretores</p>
-              <p style={{ fontSize: "0.7rem", color: "var(--color-text-muted)" }}>Imobiliários</p>
-            </div>
-          </div>
             <p className={styles.about}>{companyData.about}</p>
             <div className={styles.social}>
               <a href={socialData.instagram} target="_blank" rel="noopener noreferrer" className={styles.socialLink} aria-label="Instagram">

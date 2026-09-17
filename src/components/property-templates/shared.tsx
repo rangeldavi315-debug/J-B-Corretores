@@ -27,7 +27,7 @@ export function PropertyTopNav() {
         <ArrowLeft size={15} /> Voltar ao portfólio
       </Link>
       <div className={styles.logoCircle}>
-        <Image src="/logo.png" alt="J&B Corretores" width={44} height={44} style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+        <Image src="/brand/isotipo.png" alt="J&B Consultores Imobiliários" width={100} height={100} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
       </div>
     </div>
   );
@@ -181,7 +181,7 @@ export function SectionHeading({ eyebrow, title }: { eyebrow?: string; title: st
 export function FinalCTABand({ whatsappLink, ctaLabel }: { whatsappLink: string; ctaLabel: string }) {
   return (
     <div className={styles.finalCta}>
-      <p className={styles.finalCtaText}>Gostou do que viu? Fale agora mesmo com nosso corretor.</p>
+      <p className={styles.finalCtaText}>Gostou do que viu? Fale agora mesmo com nosso consultor.</p>
       <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className={`${styles.ctaButton} ${styles.ctaButtonInline}`}>
         <MessageSquare size={16} />
         {ctaLabel}

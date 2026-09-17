@@ -8,7 +8,7 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: #000;
+  background: var(--color-background);
   overflow: hidden;
 }
 
@@ -68,56 +68,18 @@
 .logoWrap {
   position: relative;
   width: 100%;
-  max-width: 680px;
 }
 
-.logoGlow {
-  position: absolute;
-  /* Elipse alinhada ao bloco "J&B" (viewBox 0 0 600 350: texto centrado
-     em x=300/y~170) em vez de um círculo cobrindo a composição inteira —
-     assim o brilho fica atrás da letra, não flutuando acima/abaixo dela. */
-  top: 46%;
-  left: 50%;
-  width: 56%;
-  height: 34%;
-  transform: translate(-50%, -50%) scale(1);
-  background: radial-gradient(ellipse at center,
-    rgba(253, 234, 168, 0.55) 0%,
-    rgba(212, 175, 55, 0.30) 42%,
-    rgba(212, 175, 55, 0.10) 68%,
-    transparent 82%);
-  filter: blur(26px);
-  z-index: 0;
-  pointer-events: none;
-  animation: logoGlowPulse 5.5s ease-in-out infinite;
-}
-
-@keyframes logoGlowPulse {
-  0%, 100% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scale(0.96);
-  }
-  50% {
-    opacity: 0.9;
-    transform: translate(-50%, -50%) scale(1.06);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .logoGlow {
-    animation: none;
-    opacity: 0.75;
-  }
-}
-
+/* Isologo oficial (ícone + "Consultores Imobiliários" + tagline já
+   compostos na própria imagem, com o brilho dourado já embutido) —
+   sem glow/CSS extra por cima, pra não competir com o efeito original. */
 .logoSvg {
   position: relative;
   z-index: 1;
   display: block;
   width: 100%;
-  max-width: 680px; /* Logo enorme como na referência */
+  max-width: 460px;
   height: auto;
-  overflow: visible; /* Prevent shadow clipping */
 }
 
 /* ─── CAMADA 08: TÍTULO ─── */
@@ -269,7 +231,7 @@
 
 @media (max-width: 480px) {
   .logoSvg {
-    max-width: 320px;
+    max-width: 170px;
   }
 
   .headline {
